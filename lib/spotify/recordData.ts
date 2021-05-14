@@ -63,12 +63,14 @@ async function recordData(): Promise<void> {
         // Spotify app was closed
         console.log("Spotify was closed");
         const result = durationMeasurer.quitApp(timestamp);
-        writeToDb(
-          result.track,
-          result.trackFeatures,
-          result.seconds,
-          timestamp
-        );
+        if (result.seconds != 2) {
+          writeToDb(
+            result.track,
+            result.trackFeatures,
+            result.seconds,
+            timestamp
+          );
+        }
         appRunning = false;
       }
 
