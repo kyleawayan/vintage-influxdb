@@ -1,0 +1,9 @@
+{
+    "client_id": "",
+    "redirectPort": "",
+    "clientId:Secret": "",
+    "influxDbToken": "",
+    "influxDbOrg": "",
+    "influxDbBucket": "",
+    "influxDbUrl": ""
+}
