@@ -1,9 +1,10 @@
 {
     "client_id": "",
     "redirectPort": "",
-    "clientId:Secret": "",
+    "spotify_clientId:Secret": "",
     "influxDbToken": "",
     "influxDbOrg": "",
     "influxDbBucket": "",
-    "influxDbUrl": ""
+    "influxDbUrl": "",
+    "influxDbHostName": ""
 }

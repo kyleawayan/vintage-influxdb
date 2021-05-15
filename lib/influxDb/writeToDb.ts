@@ -11,7 +11,7 @@ const client = new InfluxDB({
 });
 
 const writeApi = client.getWriteApi(org, bucket);
-writeApi.useDefaultTags({ host: "host1" });
+writeApi.useDefaultTags({ host: config.influxDbHostName });
 
 export default function writeToDb(
   spotifyData: NowPlayingTrack,
@@ -19,7 +19,12 @@ export default function writeToDb(
   duration: number,
   timestamp: Date
 ): void {
-  console.log(duration, spotifyData.item.name, trackFeatures.tempo, timestamp);
+  console.log(
+    duration,
+    spotifyData.item.name,
+    spotifyData.item.popularity,
+    timestamp
+  );
   const point = new Point("track")
     .intField("seconds_played", duration) // .intField("playing", playing)
     .tag("device_id", spotifyData.device.id)
@@ -55,6 +60,7 @@ export default function writeToDb(
     .floatField("tempo", trackFeatures.tempo)
     .intField("duration_ms", trackFeatures.duration_ms)
     .tag("time_signature", trackFeatures.time_signature.toString())
+    .intField("popularity", spotifyData.item.popularity)
     .timestamp(timestamp);
   writeApi.writePoint(point);
 }

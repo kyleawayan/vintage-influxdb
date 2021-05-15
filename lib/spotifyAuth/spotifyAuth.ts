@@ -43,7 +43,7 @@ async function getAccessTokenAndSave(
         {
           headers: {
             Authorization: `Basic ${Buffer.from(
-              config["clientId:Secret"]
+              config["spotify_clientId:Secret"]
             ).toString("base64")}`,
           },
         }
@@ -73,7 +73,7 @@ async function requestRefreshedAccessToken(
       {
         headers: {
           Authorization: `Basic ${Buffer.from(
-            config["clientId:Secret"]
+            config["spotify_clientId:Secret"]
           ).toString("base64")}`,
         },
       }

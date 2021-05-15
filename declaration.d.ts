@@ -28,6 +28,7 @@ interface NowPlayingTrack {
     name: string;
     artists: Array<ArtistObject>;
     id: string;
+    popularity: number;
   };
   is_playing: boolean;
   progress_ms: number;
