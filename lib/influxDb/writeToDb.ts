@@ -75,7 +75,7 @@ export default function writeToDb(
       .intField("artist_popularity", artistInfo.popularity)
       .tag("artist_genre", artistInfo.genres[0])
       .intField("album_popularity", albumInfo.popularity)
-      .intField("artist_followers", artistInfo.followers)
+      .intField("artist_followers", artistInfo.followers.total)
       .timestamp(timestamp);
     writeApi.writePoint(point);
   }
