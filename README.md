@@ -86,7 +86,7 @@ yarn install
 yarn start
 ```
 
-5. Click the link that was console logged. If you see `Starting to record data...`, you're done!
+5. Click the link that was console logged. If you see `Starting to record data...`, you're done! You can make sure it is working by playing and skipping around tracks on Spotify. It will console log some information and write data to the database about the track when it is finished playing, skipped, or paused. Make sure to watch the logs for a few minutes to make sure InfluxDB doesn't error.
 
 There is also a [board](https://github.com/kyleawayan/vintage-influxdb/blob/main/influxdb-boards/overview.json) for InfluxDB I have made in the `influxdb-boards` folder.
 
