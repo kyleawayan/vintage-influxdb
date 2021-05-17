@@ -20,14 +20,18 @@ if (process.env.TS_NODE_DEV == "true") {
 export default function writeToDb(
   spotifyData: NowPlayingTrack,
   trackFeatures: TrackFeatures,
+  artistInfo: ArtistInfo,
+  albumInfo: AlbumInfo,
   duration: number,
   timestamp: Date
 ): void {
   console.log(
-    duration,
-    spotifyData.item.name,
-    spotifyData.item.popularity,
-    timestamp
+    `[${timestamp.toUTCString()}]`,
+    `Seconds listened to: ${duration} /`,
+    `Title: ${spotifyData.item.name} /`,
+    `BPM: ${trackFeatures.tempo} /`,
+    `Artist genre: ${artistInfo.genres[0]} /`,
+    `Album popularity: ${albumInfo.popularity}`
   );
   if (process.env.TS_NODE_DEV != "true") {
     const point = new Point("track")
@@ -66,6 +70,9 @@ export default function writeToDb(
       .intField("duration_ms", trackFeatures.duration_ms)
       .tag("time_signature", trackFeatures.time_signature.toString())
       .intField("popularity", spotifyData.item.popularity)
+      .intField("artist_popularity", artistInfo.popularity)
+      .tag("artist_genre", artistInfo.genres[0])
+      .intField("album_popularity", albumInfo.popularity)
       .timestamp(timestamp);
     writeApi.writePoint(point);
   }

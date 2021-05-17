@@ -29,6 +29,26 @@ function getAudioFeatures(id: string) {
     .then((response) => response.data as TrackFeatures);
 }
 
+function getArtistInfo(id: string) {
+  return axios
+    .get(`https://api.spotify.com/v1/artists/${id}`, {
+      headers: {
+        Authorization: `Bearer ${currentAccessToken}`,
+      },
+    })
+    .then((response) => response.data as ArtistInfo);
+}
+
+function getAlbumInfo(id: string) {
+  return axios
+    .get(`https://api.spotify.com/v1/albums/${id}`, {
+      headers: {
+        Authorization: `Bearer ${currentAccessToken}`,
+      },
+    })
+    .then((response) => response.data as AlbumInfo);
+}
+
 const durationMeasurer = new Measurer();
 
 async function recordData(): Promise<void> {
@@ -43,10 +63,14 @@ async function recordData(): Promise<void> {
 
       if (response.status != 204 && spotifyData?.item.id) {
         appRunning = true;
+
         const trackFeatures = await getAudioFeatures(spotifyData.item.id);
+        const artistInfo = await getArtistInfo(spotifyData.item.artists[0].id);
+        const albumInfo = await getAlbumInfo(spotifyData.item.album.id);
+
         const result = durationMeasurer.checkTimer(
           spotifyData,
-          trackFeatures,
+          { trackFeatures, artistInfo, albumInfo },
           timestamp
         );
 
@@ -54,7 +78,9 @@ async function recordData(): Promise<void> {
           // If there was a change
           writeToDb(
             result.track,
-            result.trackFeatures,
+            result.additionalTrackInfo.trackFeatures,
+            result.additionalTrackInfo.artistInfo,
+            result.additionalTrackInfo.albumInfo,
             result.seconds,
             timestamp
           );
@@ -66,7 +92,9 @@ async function recordData(): Promise<void> {
         if (result.seconds != 2) {
           writeToDb(
             result.track,
-            result.trackFeatures,
+            result.additionalTrackInfo.trackFeatures,
+            result.additionalTrackInfo.artistInfo,
+            result.additionalTrackInfo.albumInfo,
             result.seconds,
             timestamp
           );

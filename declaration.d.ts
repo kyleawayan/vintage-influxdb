@@ -55,8 +55,11 @@ interface TrackFeatures {
   time_signature: number;
 }
 
-interface MeasurerResult {
-  seconds: number;
-  track: NowPlayingTrack;
-  trackFeatures: TrackFeatures;
+interface ArtistInfo {
+  genres: Array<string>;
+  popularity: number;
+}
+
+interface AlbumInfo {
+  popularity: number;
 }

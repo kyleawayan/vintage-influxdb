@@ -1,29 +1,42 @@
+interface AdditionalTrackInfo {
+  trackFeatures: TrackFeatures;
+  artistInfo: ArtistInfo;
+  albumInfo: AlbumInfo;
+}
+
+interface MeasurerResult {
+  seconds: number;
+  track: NowPlayingTrack;
+  additionalTrackInfo: AdditionalTrackInfo;
+}
+
 class Measurer {
   currentlyTrackingTrack: NowPlayingTrack | null;
-  currentlyTrackingTrackFeatures: TrackFeatures | null;
+  currentlyTrackingAdditionalTrackInfo: AdditionalTrackInfo | null;
   startDate: Date;
   playing: boolean;
 
   constructor() {
     this.currentlyTrackingTrack = null;
-    this.currentlyTrackingTrackFeatures = null;
+    this.currentlyTrackingAdditionalTrackInfo = null;
     this.startDate = new Date();
     this.playing = false;
   }
 
   checkTimer(
     currentlyTrackingTrack: NowPlayingTrack,
-    currentlyTrackingTrackFeatures: TrackFeatures,
+    additionalTrackInfo: AdditionalTrackInfo,
     currentTimestamp: Date
   ): MeasurerResult | null {
     if (!this.currentlyTrackingTrack || !this.playing) {
       this.startDate = new Date();
       this.currentlyTrackingTrack = currentlyTrackingTrack;
-      this.currentlyTrackingTrackFeatures = currentlyTrackingTrackFeatures;
+      this.currentlyTrackingAdditionalTrackInfo = additionalTrackInfo;
       this.playing = currentlyTrackingTrack.is_playing;
     }
     const trackedTrack = this.currentlyTrackingTrack;
-    const trackedTrackFeatures = this.currentlyTrackingTrackFeatures;
+    const trackedTrackAdditionalInfo =
+      this.currentlyTrackingAdditionalTrackInfo;
     if (
       (this.currentlyTrackingTrack?.item.id != currentlyTrackingTrack.item.id &&
         this.currentlyTrackingTrack != null) ||
@@ -33,13 +46,13 @@ class Measurer {
         (currentTimestamp.getTime() - this.startDate.getTime()) / 1000
       );
       this.currentlyTrackingTrack = currentlyTrackingTrack;
-      this.currentlyTrackingTrackFeatures = currentlyTrackingTrackFeatures;
+      this.currentlyTrackingAdditionalTrackInfo = additionalTrackInfo;
       this.startDate = new Date();
       this.playing = currentlyTrackingTrack.is_playing;
       return {
         seconds: duration,
         track: trackedTrack as NowPlayingTrack,
-        trackFeatures: trackedTrackFeatures as TrackFeatures,
+        additionalTrackInfo: trackedTrackAdditionalInfo as AdditionalTrackInfo,
       };
     } else {
       return null;
@@ -48,17 +61,18 @@ class Measurer {
 
   quitApp(currentTimestamp: Date): MeasurerResult {
     const tempCurrentlyPlayingTrack = this.currentlyTrackingTrack;
-    const tempCurrentlyPlayingTrackFeatures =
-      this.currentlyTrackingTrackFeatures;
+    const tempCurrentlyPlayingTrackAdditionalInfo =
+      this.currentlyTrackingAdditionalTrackInfo;
     const duration = Math.round(
       (currentTimestamp.getTime() - this.startDate.getTime()) / 1000
     );
     this.currentlyTrackingTrack = null;
-    this.currentlyTrackingTrackFeatures = null;
+    this.currentlyTrackingAdditionalTrackInfo = null;
     return {
       seconds: duration,
       track: tempCurrentlyPlayingTrack as NowPlayingTrack,
-      trackFeatures: tempCurrentlyPlayingTrackFeatures as TrackFeatures,
+      additionalTrackInfo:
+        tempCurrentlyPlayingTrackAdditionalInfo as AdditionalTrackInfo,
     };
   }
 }
