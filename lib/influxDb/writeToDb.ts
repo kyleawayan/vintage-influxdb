@@ -31,7 +31,10 @@ export default function writeToDb(
     `Title: ${spotifyData.item.name} /`,
     `BPM: ${trackFeatures.tempo} /`,
     `Artist genre: ${artistInfo.genres[0]} /`,
-    `Album popularity: ${albumInfo.popularity}`
+    `Album popularity: ${albumInfo.popularity} /`,
+    `Year: ${new Date(spotifyData.item.album.release_date)
+      .getFullYear()
+      .toString()}`
   );
   if (process.env.TS_NODE_DEV != "true") {
     const point = new Point("track")
@@ -45,11 +48,10 @@ export default function writeToDb(
       .tag("album_type", spotifyData.item.album.album_type)
       .tag("album_id", spotifyData.item.album.id)
       .tag("album_name", spotifyData.item.album.name)
-      // .stringField("album_release_date", spotifyData.item.album.release_date)
-      // .tag(
-      //   "release_date_precision",
-      //   spotifyData.item.album.release_date_precision
-      // )
+      .tag(
+        "year",
+        new Date(spotifyData.item.album.release_date).getFullYear().toString()
+      )
       .intField("album_total_tracks", spotifyData.item.album.total_tracks)
       .tag("explicit", spotifyData.item.explicit.toString())
       .tag("track_id", spotifyData.item.id)
