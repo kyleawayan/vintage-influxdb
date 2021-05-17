@@ -77,6 +77,8 @@ yarn start
 
 5. Click the link that was console logged. If you see `Starting to record data...`, you're done!
 
+There is also a board for InfluxDB I have made in the `influxdb-boards` folder.
+
 ### Deploying on a server
 
 If you would like to host this in the cloud, you will need to move your `config.json` and `spotifyKeys.json` files from your local machine to the server. Just `git clone` this repo on your server and copy those two files over. You can also use `pm2` to run it in the background and start on boot:
