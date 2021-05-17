@@ -67,7 +67,7 @@ cd vinage-influxdb
 yarn install
 ```
 
-2. Edit the `config.example.json` file and fill in the values. For the `spotify_clientId:Secret` variable, it is formatted like this: `<client_id>:<client_secret>`. The variable `influxDbHostName` is just a name for the host that is sending the data (you can name it anyhting you want).
+2. Edit the `config.example.json` file and fill in the values. For the `spotify_clientId:Secret` variable, it is formatted like this: `<client_id>:<client_secret>`. The variable `influxDbHostName` is just a name for the host that is sending the data (you can name it anything you want).
 3. Rename the `config.example.json` file to `config.json`.
 4. Start `vintage-influxdb`.
 
