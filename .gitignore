@@ -121,3 +121,6 @@ config.json
 # keys file
 keys.json
 spotifyKeys.json
+
+# dev folder
+dev/
