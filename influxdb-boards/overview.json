@@ -1,0 +1,1346 @@
+{
+    "meta": {
+        "version": "1",
+        "type": "dashboard",
+        "name": "Vintage: Overview-Template",
+        "description": "template created from dashboard: Vintage: Overview"
+    },
+    "content": {
+        "data": {
+            "type": "dashboard",
+            "attributes": {
+                "name": "Vintage: Overview",
+                "description": "Listening activity, BPM, energy, and top songs and artists"
+            },
+            "relationships": {
+                "label": {
+                    "data": [
+                        {
+                            "type": "label",
+                            "id": "07875a619d4ce000"
+                        },
+                        {
+                            "type": "label",
+                            "id": "07875a6a37a23000"
+                        },
+                        {
+                            "type": "label",
+                            "id": "07875a70ac47f000"
+                        },
+                        {
+                            "type": "label",
+                            "id": "07875a79ebc75000"
+                        },
+                        {
+                            "type": "label",
+                            "id": "07875a855be98000"
+                        }
+                    ]
+                },
+                "cell": {
+                    "data": [
+                        {
+                            "type": "cell",
+                            "id": "078672c1f6d70000"
+                        },
+                        {
+                            "type": "cell",
+                            "id": "07868019c85af000"
+                        },
+                        {
+                            "type": "cell",
+                            "id": "07868506f45af000"
+                        },
+                        {
+                            "type": "cell",
+                            "id": "07874c4a533bc000"
+                        },
+                        {
+                            "type": "cell",
+                            "id": "07874e311551a000"
+                        },
+                        {
+                            "type": "cell",
+                            "id": "07874e82ef7bc000"
+                        },
+                        {
+                            "type": "cell",
+                            "id": "07875694d9ac7000"
+                        },
+                        {
+                            "type": "cell",
+                            "id": "078759abcc788000"
+                        },
+                        {
+                            "type": "cell",
+                            "id": "0789fc7acce08000"
+                        }
+                    ]
+                },
+                "variable": {
+                    "data": [
+                        {
+                            "type": "variable",
+                            "id": "0787ce9409fbc000"
+                        }
+                    ]
+                }
+            }
+        },
+        "included": [
+            {
+                "type": "label",
+                "id": "07875a619d4ce000",
+                "attributes": {
+                    "name": "Activity",
+                    "properties": {
+                        "color": "#009f5f",
+                        "description": "Track listening activity throughout the day."
+                    }
+                }
+            },
+            {
+                "type": "label",
+                "id": "07875a6a37a23000",
+                "attributes": {
+                    "name": "Top Artists",
+                    "properties": {
+                        "color": "#be2ee4",
+                        "description": ""
+                    }
+                }
+            },
+            {
+                "type": "label",
+                "id": "07875a70ac47f000",
+                "attributes": {
+                    "name": "Top Songs",
+                    "properties": {
+                        "color": "#be2ee4",
+                        "description": ""
+                    }
+                }
+            },
+            {
+                "type": "label",
+                "id": "07875a79ebc75000",
+                "attributes": {
+                    "name": "BPM",
+                    "properties": {
+                        "color": "#00a3ff",
+                        "description": ""
+                    }
+                }
+            },
+            {
+                "type": "label",
+                "id": "07875a855be98000",
+                "attributes": {
+                    "name": "Energy",
+                    "properties": {
+                        "color": "#00a3ff",
+                        "description": ""
+                    }
+                }
+            },
+            {
+                "id": "078672c1f6d70000",
+                "type": "cell",
+                "attributes": {
+                    "x": 0,
+                    "y": 0,
+                    "w": 4,
+                    "h": 7
+                },
+                "relationships": {
+                    "view": {
+                        "data": {
+                            "type": "view",
+                            "id": "078672c1f6d70000"
+                        }
+                    }
+                }
+            },
+            {
+                "id": "07868019c85af000",
+                "type": "cell",
+                "attributes": {
+                    "x": 0,
+                    "y": 7,
+                    "w": 4,
+                    "h": 4
+                },
+                "relationships": {
+                    "view": {
+                        "data": {
+                            "type": "view",
+                            "id": "07868019c85af000"
+                        }
+                    }
+                }
+            },
+            {
+                "id": "07868506f45af000",
+                "type": "cell",
+                "attributes": {
+                    "x": 4,
+                    "y": 0,
+                    "w": 8,
+                    "h": 4
+                },
+                "relationships": {
+                    "view": {
+                        "data": {
+                            "type": "view",
+                            "id": "07868506f45af000"
+                        }
+                    }
+                }
+            },
+            {
+                "id": "07874c4a533bc000",
+                "type": "cell",
+                "attributes": {
+                    "x": 4,
+                    "y": 7,
+                    "w": 4,
+                    "h": 4
+                },
+                "relationships": {
+                    "view": {
+                        "data": {
+                            "type": "view",
+                            "id": "07874c4a533bc000"
+                        }
+                    }
+                }
+            },
+            {
+                "id": "07874e311551a000",
+                "type": "cell",
+                "attributes": {
+                    "x": 0,
+                    "y": 11,
+                    "w": 4,
+                    "h": 2
+                },
+                "relationships": {
+                    "view": {
+                        "data": {
+                            "type": "view",
+                            "id": "07874e311551a000"
+                        }
+                    }
+                }
+            },
+            {
+                "id": "07874e82ef7bc000",
+                "type": "cell",
+                "attributes": {
+                    "x": 4,
+                    "y": 11,
+                    "w": 4,
+                    "h": 2
+                },
+                "relationships": {
+                    "view": {
+                        "data": {
+                            "type": "view",
+                            "id": "07874e82ef7bc000"
+                        }
+                    }
+                }
+            },
+            {
+                "id": "07875694d9ac7000",
+                "type": "cell",
+                "attributes": {
+                    "x": 8,
+                    "y": 4,
+                    "w": 4,
+                    "h": 9
+                },
+                "relationships": {
+                    "view": {
+                        "data": {
+                            "type": "view",
+                            "id": "07875694d9ac7000"
+                        }
+                    }
+                }
+            },
+            {
+                "id": "078759abcc788000",
+                "type": "cell",
+                "attributes": {
+                    "x": 4,
+                    "y": 4,
+                    "w": 2,
+                    "h": 3
+                },
+                "relationships": {
+                    "view": {
+                        "data": {
+                            "type": "view",
+                            "id": "078759abcc788000"
+                        }
+                    }
+                }
+            },
+            {
+                "id": "0789fc7acce08000",
+                "type": "cell",
+                "attributes": {
+                    "x": 6,
+                    "y": 4,
+                    "w": 2,
+                    "h": 3
+                },
+                "relationships": {
+                    "view": {
+                        "data": {
+                            "type": "view",
+                            "id": "0789fc7acce08000"
+                        }
+                    }
+                }
+            },
+            {
+                "type": "view",
+                "id": "078672c1f6d70000",
+                "attributes": {
+                    "name": "Activity",
+                    "properties": {
+                        "shape": "chronograf-v2",
+                        "queries": [
+                            {
+                                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\", \"track_name\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: last)\n  |> map(fn: (r) => ({ r with _value: r._value / 60 }))",
+                                "editMode": "advanced",
+                                "name": "",
+                                "builderConfig": {
+                                    "buckets": [],
+                                    "tags": [
+                                        {
+                                            "key": "_measurement",
+                                            "values": [],
+                                            "aggregateFunctionType": "filter"
+                                        }
+                                    ],
+                                    "functions": [
+                                        {
+                                            "name": "mean"
+                                        }
+                                    ],
+                                    "aggregateWindow": {
+                                        "period": "auto",
+                                        "fillValues": false
+                                    }
+                                }
+                            }
+                        ],
+                        "axes": {
+                            "x": {
+                                "bounds": [
+                                    "",
+                                    ""
+                                ],
+                                "label": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "base": "10",
+                                "scale": "linear"
+                            },
+                            "y": {
+                                "bounds": [
+                                    "",
+                                    ""
+                                ],
+                                "label": "Minutes Listened",
+                                "prefix": "",
+                                "suffix": "",
+                                "base": "10",
+                                "scale": "linear"
+                            }
+                        },
+                        "type": "xy",
+                        "staticLegend": {},
+                        "geom": "monotoneX",
+                        "colors": [
+                            {
+                                "id": "e759d1dd-65a7-4377-b552-24ba33a1ba4d",
+                                "type": "scale",
+                                "hex": "#31C0F6",
+                                "name": "Nineteen Eighty Four",
+                                "value": 0
+                            },
+                            {
+                                "id": "54d3b6ef-0433-42af-806a-9d55f6dd8c57",
+                                "type": "scale",
+                                "hex": "#A500A5",
+                                "name": "Nineteen Eighty Four",
+                                "value": 0
+                            },
+                            {
+                                "id": "bb2335dd-8093-4860-81f7-3dddb082ec74",
+                                "type": "scale",
+                                "hex": "#FF7E27",
+                                "name": "Nineteen Eighty Four",
+                                "value": 0
+                            }
+                        ],
+                        "note": "",
+                        "showNoteWhenEmpty": false,
+                        "xColumn": "",
+                        "generateXAxisTicks": [],
+                        "xTotalTicks": 0,
+                        "xTickStart": 0,
+                        "xTickStep": 0,
+                        "yColumn": "",
+                        "generateYAxisTicks": [],
+                        "yTotalTicks": 0,
+                        "yTickStart": 0,
+                        "yTickStep": 0,
+                        "shadeBelow": true,
+                        "position": "overlaid",
+                        "timeFormat": "hh:mm a",
+                        "hoverDimension": "auto",
+                        "legendColorizeRows": true,
+                        "legendOpacity": 1,
+                        "legendOrientationThreshold": 100000000
+                    }
+                }
+            },
+            {
+                "type": "view",
+                "id": "07868019c85af000",
+                "attributes": {
+                    "name": "BPM",
+                    "properties": {
+                        "shape": "chronograf-v2",
+                        "type": "heatmap",
+                        "queries": [
+                            {
+                                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"tempo\")\n  |> aggregateWindow(every: v.windowPeriod, fn: last)",
+                                "editMode": "advanced",
+                                "name": "",
+                                "builderConfig": {
+                                    "buckets": [],
+                                    "tags": [
+                                        {
+                                            "key": "_measurement",
+                                            "values": [],
+                                            "aggregateFunctionType": "filter"
+                                        }
+                                    ],
+                                    "functions": [
+                                        {
+                                            "name": "mean"
+                                        }
+                                    ],
+                                    "aggregateWindow": {
+                                        "period": "auto",
+                                        "fillValues": false
+                                    }
+                                }
+                            }
+                        ],
+                        "colors": [
+                            "#0d0887",
+                            "#3a049a",
+                            "#5c01a6",
+                            "#7e03a8",
+                            "#9c179e",
+                            "#b52f8c",
+                            "#cc4778",
+                            "#de5f65",
+                            "#ed7953",
+                            "#f89540",
+                            "#fdb42f",
+                            "#fbd524"
+                        ],
+                        "binSize": 24,
+                        "xColumn": "_time",
+                        "generateXAxisTicks": [],
+                        "xTotalTicks": 0,
+                        "xTickStart": 0,
+                        "xTickStep": 0,
+                        "yColumn": "_value",
+                        "generateYAxisTicks": [],
+                        "yTotalTicks": 0,
+                        "yTickStart": 0,
+                        "yTickStep": 0,
+                        "xAxisLabel": "Time",
+                        "yAxisLabel": "BPM",
+                        "xPrefix": "",
+                        "xSuffix": "",
+                        "yPrefix": "",
+                        "ySuffix": "",
+                        "note": "",
+                        "showNoteWhenEmpty": false,
+                        "timeFormat": "hh:mm a",
+                        "legendColorizeRows": true,
+                        "legendOpacity": 1,
+                        "legendOrientationThreshold": 100000000
+                    }
+                }
+            },
+            {
+                "type": "view",
+                "id": "07868506f45af000",
+                "attributes": {
+                    "name": "Top Songs",
+                    "properties": {
+                        "shape": "chronograf-v2",
+                        "queries": [
+                            {
+                                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\", \"track_name\"])\n  |> map(fn: (r) => ({ r with _value: r._value / 60 }))\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: true)\n  |> cumulativeSum(columns: [\"_value\"])",
+                                "editMode": "advanced",
+                                "name": "",
+                                "builderConfig": {
+                                    "buckets": [],
+                                    "tags": [
+                                        {
+                                            "key": "_measurement",
+                                            "values": [],
+                                            "aggregateFunctionType": "filter"
+                                        }
+                                    ],
+                                    "functions": [
+                                        {
+                                            "name": "mean"
+                                        }
+                                    ],
+                                    "aggregateWindow": {
+                                        "period": "auto",
+                                        "fillValues": false
+                                    }
+                                }
+                            }
+                        ],
+                        "axes": {
+                            "x": {
+                                "bounds": [
+                                    "",
+                                    ""
+                                ],
+                                "label": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "base": "10",
+                                "scale": "linear"
+                            },
+                            "y": {
+                                "bounds": [
+                                    "",
+                                    ""
+                                ],
+                                "label": "Total Minutes Listened",
+                                "prefix": "",
+                                "suffix": "",
+                                "base": "10",
+                                "scale": "linear"
+                            }
+                        },
+                        "type": "xy",
+                        "staticLegend": {},
+                        "geom": "step",
+                        "colors": [
+                            {
+                                "id": "64879223-d2c9-4d46-9e47-3b98df9e0aa4",
+                                "type": "scale",
+                                "hex": "#31C0F6",
+                                "name": "Nineteen Eighty Four",
+                                "value": 0
+                            },
+                            {
+                                "id": "2e8e71f9-5a10-4997-9c0a-3f6c5337cf2d",
+                                "type": "scale",
+                                "hex": "#A500A5",
+                                "name": "Nineteen Eighty Four",
+                                "value": 0
+                            },
+                            {
+                                "id": "389084ac-3f83-4bdc-8d95-44bddba5cec3",
+                                "type": "scale",
+                                "hex": "#FF7E27",
+                                "name": "Nineteen Eighty Four",
+                                "value": 0
+                            }
+                        ],
+                        "note": "",
+                        "showNoteWhenEmpty": false,
+                        "xColumn": "_time",
+                        "generateXAxisTicks": [],
+                        "xTotalTicks": 0,
+                        "xTickStart": 0,
+                        "xTickStep": 0,
+                        "yColumn": "_value",
+                        "generateYAxisTicks": [],
+                        "yTotalTicks": 0,
+                        "yTickStart": 0,
+                        "yTickStep": 0,
+                        "shadeBelow": true,
+                        "position": "overlaid",
+                        "timeFormat": "hh:mm a",
+                        "hoverDimension": "auto",
+                        "legendColorizeRows": true,
+                        "legendOpacity": 1,
+                        "legendOrientationThreshold": 100000000
+                    }
+                }
+            },
+            {
+                "type": "view",
+                "id": "07874c4a533bc000",
+                "attributes": {
+                    "name": "Energy",
+                    "properties": {
+                        "shape": "chronograf-v2",
+                        "type": "heatmap",
+                        "queries": [
+                            {
+                                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"energy\")\n  |> aggregateWindow(every: v.windowPeriod, fn: last)",
+                                "editMode": "advanced",
+                                "name": "",
+                                "builderConfig": {
+                                    "buckets": [],
+                                    "tags": [
+                                        {
+                                            "key": "_measurement",
+                                            "values": [],
+                                            "aggregateFunctionType": "filter"
+                                        }
+                                    ],
+                                    "functions": [
+                                        {
+                                            "name": "mean"
+                                        }
+                                    ],
+                                    "aggregateWindow": {
+                                        "period": "auto",
+                                        "fillValues": false
+                                    }
+                                }
+                            }
+                        ],
+                        "colors": [
+                            "#0d0887",
+                            "#3a049a",
+                            "#5c01a6",
+                            "#7e03a8",
+                            "#9c179e",
+                            "#b52f8c",
+                            "#cc4778",
+                            "#de5f65",
+                            "#ed7953",
+                            "#f89540",
+                            "#fdb42f",
+                            "#fbd524"
+                        ],
+                        "binSize": 24,
+                        "xColumn": "_time",
+                        "generateXAxisTicks": [],
+                        "xTotalTicks": 0,
+                        "xTickStart": 0,
+                        "xTickStep": 0,
+                        "yColumn": "_value",
+                        "generateYAxisTicks": [],
+                        "yTotalTicks": 0,
+                        "yTickStart": 0,
+                        "yTickStep": 0,
+                        "xAxisLabel": "Time",
+                        "yAxisLabel": "Energy Percentage",
+                        "xPrefix": "",
+                        "xSuffix": "",
+                        "yPrefix": "",
+                        "ySuffix": "",
+                        "note": "",
+                        "showNoteWhenEmpty": false,
+                        "timeFormat": "hh:mm a",
+                        "legendColorizeRows": true,
+                        "legendOpacity": 1,
+                        "legendOrientationThreshold": 100000000
+                    }
+                }
+            },
+            {
+                "type": "view",
+                "id": "07874e311551a000",
+                "attributes": {
+                    "name": "Average BPM",
+                    "properties": {
+                        "shape": "chronograf-v2",
+                        "type": "single-stat",
+                        "queries": [
+                            {
+                                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_field\"] == \"tempo\")\n  |> group()\n  |> mean()",
+                                "editMode": "advanced",
+                                "name": "",
+                                "builderConfig": {
+                                    "buckets": [],
+                                    "tags": [
+                                        {
+                                            "key": "_measurement",
+                                            "values": [],
+                                            "aggregateFunctionType": "filter"
+                                        }
+                                    ],
+                                    "functions": [
+                                        {
+                                            "name": "mean"
+                                        }
+                                    ],
+                                    "aggregateWindow": {
+                                        "period": "auto",
+                                        "fillValues": false
+                                    }
+                                }
+                            }
+                        ],
+                        "prefix": "",
+                        "tickPrefix": "",
+                        "suffix": " BPM",
+                        "tickSuffix": "",
+                        "colors": [
+                            {
+                                "id": "base",
+                                "type": "text",
+                                "hex": "#00C9FF",
+                                "name": "laser",
+                                "value": 0
+                            }
+                        ],
+                        "decimalPlaces": {
+                            "isEnforced": true,
+                            "digits": 2
+                        },
+                        "note": "",
+                        "showNoteWhenEmpty": false
+                    }
+                }
+            },
+            {
+                "type": "view",
+                "id": "07874e82ef7bc000",
+                "attributes": {
+                    "name": "Average Energy",
+                    "properties": {
+                        "shape": "chronograf-v2",
+                        "type": "single-stat",
+                        "queries": [
+                            {
+                                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_field\"] == \"energy\")\n  |> map(fn: (r) => ({ r with _value: r._value * 100.00 }))\n  |> group()\n  |> mean()",
+                                "editMode": "advanced",
+                                "name": "",
+                                "builderConfig": {
+                                    "buckets": [],
+                                    "tags": [
+                                        {
+                                            "key": "_measurement",
+                                            "values": [],
+                                            "aggregateFunctionType": "filter"
+                                        }
+                                    ],
+                                    "functions": [
+                                        {
+                                            "name": "mean"
+                                        }
+                                    ],
+                                    "aggregateWindow": {
+                                        "period": "auto",
+                                        "fillValues": false
+                                    }
+                                }
+                            }
+                        ],
+                        "prefix": "",
+                        "tickPrefix": "",
+                        "suffix": "%",
+                        "tickSuffix": "",
+                        "colors": [
+                            {
+                                "id": "base",
+                                "type": "text",
+                                "hex": "#00C9FF",
+                                "name": "laser",
+                                "value": 0
+                            }
+                        ],
+                        "decimalPlaces": {
+                            "isEnforced": true,
+                            "digits": 2
+                        },
+                        "note": "",
+                        "showNoteWhenEmpty": false
+                    }
+                }
+            },
+            {
+                "type": "view",
+                "id": "07875694d9ac7000",
+                "attributes": {
+                    "name": "Top Songs",
+                    "properties": {
+                        "shape": "chronograf-v2",
+                        "type": "table",
+                        "queries": [
+                            {
+                                "text": "from(bucket: v.bucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> keep(columns: [\"_value\", \"artist_name\", \"track_name\"])\r\n  |> sum()\r\n  |> group(columns: [\"_measurement\"], mode:\"by\")\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> map(fn: (r) => ({ r with _value: string(v: duration(v: r._value * 1000000000)) }))",
+                                "editMode": "advanced",
+                                "name": "",
+                                "builderConfig": {
+                                    "buckets": [],
+                                    "tags": [
+                                        {
+                                            "key": "_measurement",
+                                            "values": [],
+                                            "aggregateFunctionType": "filter"
+                                        }
+                                    ],
+                                    "functions": [
+                                        {
+                                            "name": "mean"
+                                        }
+                                    ],
+                                    "aggregateWindow": {
+                                        "period": "auto",
+                                        "fillValues": false
+                                    }
+                                }
+                            }
+                        ],
+                        "colors": [
+                            {
+                                "id": "base",
+                                "type": "text",
+                                "hex": "#ffffff",
+                                "name": "white",
+                                "value": 0
+                            }
+                        ],
+                        "tableOptions": {
+                            "verticalTimeAxis": true,
+                            "sortBy": {
+                                "internalName": "",
+                                "displayName": "",
+                                "visible": false
+                            },
+                            "wrapping": "",
+                            "fixFirstColumn": false
+                        },
+                        "fieldOptions": [
+                            {
+                                "internalName": "_field",
+                                "displayName": "_field",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "_measurement",
+                                "displayName": "_measurement",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "_start",
+                                "displayName": "_start",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "_stop",
+                                "displayName": "_stop",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "_time",
+                                "displayName": "_time",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "_value",
+                                "displayName": "Time Played",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "track_name",
+                                "displayName": "Track Name",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "artist_name",
+                                "displayName": "Artist Name",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "album_name",
+                                "displayName": "Album Name",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "album_id",
+                                "displayName": "album_id",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "album_type",
+                                "displayName": "album_type",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "artist_id",
+                                "displayName": "artist_id",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "device_id",
+                                "displayName": "device_id",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "device_name",
+                                "displayName": "device_name",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "device_type",
+                                "displayName": "device_type",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "explicit",
+                                "displayName": "explicit",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "host",
+                                "displayName": "host",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "key",
+                                "displayName": "key",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "mode",
+                                "displayName": "mode",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "repeat_state",
+                                "displayName": "repeat_state",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "shuffle_state",
+                                "displayName": "shuffle_state",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "time_signature",
+                                "displayName": "time_signature",
+                                "visible": false
+                            },
+                            {
+                                "internalName": "track_id",
+                                "displayName": "track_id",
+                                "visible": false
+                            }
+                        ],
+                        "timeFormat": "YYYY-MM-DD HH:mm:ss",
+                        "decimalPlaces": {
+                            "isEnforced": false,
+                            "digits": 2
+                        },
+                        "note": "",
+                        "showNoteWhenEmpty": false
+                    }
+                }
+            },
+            {
+                "type": "view",
+                "id": "078759abcc788000",
+                "attributes": {
+                    "name": "Top Artists",
+                    "properties": {
+                        "shape": "chronograf-v2",
+                        "type": "table",
+                        "queries": [
+                            {
+                                "text": "from(bucket: \"kyle.ayn\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\"])\n  |> sum()\n  |> group()\n  |> sort(columns: [\"_value\"], desc: true)\n  |> map(fn: (r) => ({ r with _value: string(v: duration(v: r._value * 1000000000 )) }))\n",
+                                "editMode": "advanced",
+                                "name": "",
+                                "builderConfig": {
+                                    "buckets": [],
+                                    "tags": [
+                                        {
+                                            "key": "_measurement",
+                                            "values": [],
+                                            "aggregateFunctionType": "filter"
+                                        }
+                                    ],
+                                    "functions": [
+                                        {
+                                            "name": "mean"
+                                        }
+                                    ],
+                                    "aggregateWindow": {
+                                        "period": "auto",
+                                        "fillValues": false
+                                    }
+                                }
+                            }
+                        ],
+                        "colors": [
+                            {
+                                "id": "base",
+                                "type": "text",
+                                "hex": "#ffffff",
+                                "name": "white",
+                                "value": 0
+                            }
+                        ],
+                        "tableOptions": {
+                            "verticalTimeAxis": true,
+                            "sortBy": {
+                                "internalName": "",
+                                "displayName": "",
+                                "visible": false
+                            },
+                            "wrapping": "",
+                            "fixFirstColumn": false
+                        },
+                        "fieldOptions": [
+                            {
+                                "internalName": "_start",
+                                "displayName": "_start",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "_stop",
+                                "displayName": "_stop",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "_time",
+                                "displayName": "_time",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "_value",
+                                "displayName": "Time Played",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "_field",
+                                "displayName": "_field",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "_measurement",
+                                "displayName": "_measurement",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "album_id",
+                                "displayName": "album_id",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "album_name",
+                                "displayName": "album_name",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "album_type",
+                                "displayName": "album_type",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "artist_id",
+                                "displayName": "artist_id",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "artist_name",
+                                "displayName": "Artist Name",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "device_id",
+                                "displayName": "device_id",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "device_name",
+                                "displayName": "device_name",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "device_type",
+                                "displayName": "device_type",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "explicit",
+                                "displayName": "explicit",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "host",
+                                "displayName": "host",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "key",
+                                "displayName": "key",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "mode",
+                                "displayName": "mode",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "repeat_state",
+                                "displayName": "repeat_state",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "shuffle_state",
+                                "displayName": "shuffle_state",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "time_signature",
+                                "displayName": "time_signature",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "track_id",
+                                "displayName": "track_id",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "track_name",
+                                "displayName": "track_name",
+                                "visible": true
+                            }
+                        ],
+                        "timeFormat": "YYYY-MM-DD HH:mm:ss",
+                        "decimalPlaces": {
+                            "isEnforced": false,
+                            "digits": 2
+                        },
+                        "note": "",
+                        "showNoteWhenEmpty": false
+                    }
+                }
+            },
+            {
+                "type": "view",
+                "id": "0789fc7acce08000",
+                "attributes": {
+                    "name": "Top Genres",
+                    "properties": {
+                        "shape": "chronograf-v2",
+                        "type": "table",
+                        "queries": [
+                            {
+                                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> keep(columns: [\"_time\", \"_value\", \"artist_genre\"])\n  |> sum()\n  |> group()\n  |> sort(columns: [\"_value\"], desc: true)\n  |> map(fn: (r) => ({ r with _value: string(v: duration(v: r._value * 1000000000 )) }))\n",
+                                "editMode": "advanced",
+                                "name": "",
+                                "builderConfig": {
+                                    "buckets": [],
+                                    "tags": [
+                                        {
+                                            "key": "_measurement",
+                                            "values": [],
+                                            "aggregateFunctionType": "filter"
+                                        }
+                                    ],
+                                    "functions": [
+                                        {
+                                            "name": "mean"
+                                        }
+                                    ],
+                                    "aggregateWindow": {
+                                        "period": "auto",
+                                        "fillValues": false
+                                    }
+                                }
+                            }
+                        ],
+                        "colors": [
+                            {
+                                "id": "base",
+                                "type": "text",
+                                "hex": "#ffffff",
+                                "name": "white",
+                                "value": 0
+                            }
+                        ],
+                        "tableOptions": {
+                            "verticalTimeAxis": true,
+                            "sortBy": {
+                                "internalName": "",
+                                "displayName": "",
+                                "visible": false
+                            },
+                            "wrapping": "",
+                            "fixFirstColumn": false
+                        },
+                        "fieldOptions": [
+                            {
+                                "internalName": "_start",
+                                "displayName": "_start",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "_stop",
+                                "displayName": "_stop",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "_time",
+                                "displayName": "_time",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "_value",
+                                "displayName": "Time Played",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "_field",
+                                "displayName": "_field",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "_measurement",
+                                "displayName": "_measurement",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "album_id",
+                                "displayName": "album_id",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "album_name",
+                                "displayName": "album_name",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "album_type",
+                                "displayName": "album_type",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "artist_id",
+                                "displayName": "artist_id",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "artist_name",
+                                "displayName": "Artist Name",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "device_id",
+                                "displayName": "device_id",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "device_name",
+                                "displayName": "device_name",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "device_type",
+                                "displayName": "device_type",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "explicit",
+                                "displayName": "explicit",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "host",
+                                "displayName": "host",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "key",
+                                "displayName": "key",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "mode",
+                                "displayName": "mode",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "repeat_state",
+                                "displayName": "repeat_state",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "shuffle_state",
+                                "displayName": "shuffle_state",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "time_signature",
+                                "displayName": "time_signature",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "track_id",
+                                "displayName": "track_id",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "track_name",
+                                "displayName": "track_name",
+                                "visible": true
+                            },
+                            {
+                                "internalName": "artist_genre",
+                                "displayName": "Genre",
+                                "visible": true
+                            }
+                        ],
+                        "timeFormat": "YYYY-MM-DD HH:mm:ss",
+                        "decimalPlaces": {
+                            "isEnforced": false,
+                            "digits": 2
+                        },
+                        "note": "",
+                        "showNoteWhenEmpty": false
+                    }
+                }
+            },
+            {
+                "id": "0787ce9409fbc000",
+                "type": "variable",
+                "attributes": {
+                    "name": "bucket",
+                    "arguments": {
+                        "type": "query",
+                        "values": {
+                            "query": "buckets()\n  |> filter(fn: (r) => r.name !~ /^_/)\n  |> rename(columns: {name: \"_value\"})\n  |> keep(columns: [\"_value\"])\n",
+                            "language": "flux"
+                        }
+                    },
+                    "selected": null
+                },
+                "relationships": {
+                    "label": {
+                        "data": []
+                    }
+                }
+            }
+        ]
+    },
+    "labels": []
+}
