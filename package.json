@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/index.js",
+    "start": "tsc && node ./dist/index.js",
     "dev": "ts-node-dev --watch config.json,spotifyKeys.json --cache-directory ./dev ."
   },
   "devDependencies": {

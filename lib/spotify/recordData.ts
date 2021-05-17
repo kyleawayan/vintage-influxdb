@@ -151,15 +151,20 @@ async function recordData(): Promise<void> {
 function prepareToRecordData(): void {
   fs.readFile(projectPath, async (err, data) => {
     if (!err) {
-      const parsedJSON = JSON.parse(data.toString());
-      currentRefreshToken = parsedJSON.refresh_token;
+      try {
+        const parsedJSON = JSON.parse(data.toString());
+        currentRefreshToken = parsedJSON.refresh_token;
 
-      console.log("Refreshing token...");
-      currentAccessToken = await requestRefreshedAccessToken(
-        currentRefreshToken
-      );
-      running = true;
-      recordData();
+        console.log("Refreshing token...");
+        currentAccessToken = await requestRefreshedAccessToken(
+          currentRefreshToken
+        );
+        running = true;
+        recordData();
+      } catch (e) {
+        console.error(e);
+        console.error("Error refreshing token. Try deleting spotifyKeys.json");
+      }
     } else {
       console.error(err);
     }

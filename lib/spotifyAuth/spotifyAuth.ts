@@ -58,31 +58,21 @@ async function getAccessTokenAndSave(
   }
 }
 
-async function requestRefreshedAccessToken(
-  refresh_token: string
-): Promise<string> {
+function requestRefreshedAccessToken(refresh_token: string): Promise<string> {
   const params = new URLSearchParams();
 
   params.append("grant_type", "refresh_token");
   params.append("refresh_token", refresh_token);
 
-  try {
-    const accessTokenResponse = await axios.post(
-      "https://accounts.spotify.com/api/token",
-      params,
-      {
-        headers: {
-          Authorization: `Basic ${Buffer.from(
-            config["spotify_clientId:Secret"]
-          ).toString("base64")}`,
-        },
-      }
-    );
-    return Promise.resolve(accessTokenResponse.data.access_token);
-  } catch (e) {
-    console.error(e);
-    return Promise.reject("Error refreshing token");
-  }
+  return axios
+    .post("https://accounts.spotify.com/api/token", params, {
+      headers: {
+        Authorization: `Basic ${Buffer.from(
+          config["spotify_clientId:Secret"]
+        ).toString("base64")}`,
+      },
+    })
+    .then((response) => response.data.access_token);
 }
 
 export { createAuthUrl, getAccessTokenAndSave, requestRefreshedAccessToken };
