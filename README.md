@@ -6,40 +6,50 @@ Record your Spotify listening data on [InfluxDB](https://www.influxdata.com/).
 
 ## What's collected
 
-Aside from how long you've been playing each song, the following are also recorded:
+### Fields
 
-- Track ID
-- Track Popularity (percentage)
-- Duration of song
-- Audio Features
-  - Danceability
-  - Energy
-  - Key
-  - Loudness
-  - Mode
-  - Speechiness
-  - Acousticness
-  - Instrumentalness
-  - Liveness
-  - Valence
-  - Tempo
-  - Time Signature
-- Artist ID
-- Artist Genre
-- Artist Popularity (percentage)
-- Artist Follower Count
-- Album ID
-- Album Total Tracks
-- Album Type
-- Album Popularity (percentage)
-- Device you're listening on
-  - Device Name
-  - Device ID
-  - Device Type
-  - Device Volume Percent (on Spotify app)
-- Shuffle State
-- Repeat State
-- If track is explicit or not
+| Data                                      | Field Name              | Type  |
+| ----------------------------------------- | ----------------------- | ----- |
+| Seconds played of a track (acc. by ~2sec) | `seconds_played`        | int   |
+| Danceability of a track                   | `danceability`          | float |
+| Energy of a track                         | `energy`                | float |
+| Loudness of a track                       | `loudness`              | float |
+| Speechiness of a track                    | `speechiness`           | float |
+| Acousticness of a track                   | `acousticness`          | float |
+| Instrumentalness of a track               | `instrumentalness`      | float |
+| Liveness of a track                       | `liveness`              | float |
+| Valence of a track                        | `valence`               | float |
+| Device Volume Percent                     | `device_volume_percent` | int   |
+| Duration of track                         | `duration_ms`           | int   |
+| Track popularity (0-100)                  | `popularity`            | int   |
+| Artist popularity (0-100)                 | `artist_popularity`     | int   |
+| Artist followers                          | `artist_followers`      | int   |
+| Album popularity (0-100)                  | `album_popularity`      | int   |
+| Album Total Tracks                        | `album_total_tracks`    | int   |
+
+### Tags
+
+| Data                                 | Tag Name                |
+| ------------------------------------ | ----------------------- |
+| Track name                           | `track_name`            |
+| Artist name                          | `artist_name`           |
+| Album name                           | `album_name`            |
+| Track ID                             | `track_id`              |
+| Artist ID                            | `artist_id`             |
+| Album ID                             | `album_id`              |
+| Key                                  | `key`                   |
+| Mode                                 | `mode`                  |
+| Tempo                                | `tempo`                 |
+| Time signature                       | `time_signature`        |
+| Artist genre                         | `artist_genre`          |
+| Album type                           | `album_type`            |
+| Device name you are listening on     | `device_name`           |
+| Device ID you are listening on       | `device_id`             |
+| Device type you are listening on     | `device_type`           |
+| Device volume percent on Spotify app | `device_volume_percent` |
+| Shuffle state                        | `shuffle_state`         |
+| Repeat state                         | `repeat_state`          |
+| If track is explicit or not          | `explicit`              |
 
 ## Usage
 
@@ -49,7 +59,7 @@ Node.js, Yarn, and an InfluxDB database is needed. You will also need `localhost
 
 1. Create a Spotify application on the [Devloper Dashboard page](https://developer.spotify.com/dashboard/).
 2. Once you have created your application, go to the info page for your application where the graphs are, then click on "Edit Settings".
-3. Add the redirect URI: `http://localhost:4629/callback`. You may optionally change the port. Save the settings. You will need to refer to this page again for the client ID and secret.
+3. Add the redirect URI: `http://localhost:4629/callback`. You may optionally change the redirect port. Save the settings. You will need to refer to this page again for the client ID and secret.
 
 ### InfluxDB Setup
 
