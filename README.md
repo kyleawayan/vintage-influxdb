@@ -9,7 +9,7 @@ Record your Spotify listening data on [InfluxDB](https://www.influxdata.com/).
 Aside from how long you've been playing each song, the following are also recorded:
 
 - Track ID
-- Track Popularity
+- Track Popularity (percentage)
 - Duration of song
 - Audio Features
   - Danceability
@@ -26,11 +26,12 @@ Aside from how long you've been playing each song, the following are also record
   - Time Signature
 - Artist ID
 - Artist Genre
-- Artist Popularity (Percentage)
+- Artist Popularity (percentage)
 - Artist Follower Count
 - Album ID
 - Album Total Tracks
 - Album Type
+- Album Popularity (percentage)
 - Device you're listening on
   - Device Name
   - Device ID
@@ -42,7 +43,7 @@ Aside from how long you've been playing each song, the following are also record
 
 ## Usage
 
-Node.js, Yarn, and an InfluxDB database is needed. You will also need `localhost` web access to `vintage-influxdb` for OAuth authentication. There is still a way to deploy `vintage-influxdb` to a server, however you will need to clone this on your local computer first.
+Node.js, Yarn, and an InfluxDB database is needed. You will also need `localhost` web access to `vintage-influxdb` for OAuth authentication. There is still a way to deploy `vintage-influxdb` to a server, however you will need to clone this on your local machine first.
 
 ### Spotify Setup
 
@@ -81,7 +82,7 @@ There is also a [board](https://github.com/kyleawayan/vintage-influxdb/blob/main
 
 ### Deploying on a server
 
-If you would like to host this in the cloud, you will need to move your `config.json` and `spotifyKeys.json` files from your local machine to the server. Just `git clone` this repo on your server and copy those two files over. You can also use `pm2` to run it in the background and start on boot:
+If you would like to host this on a server, you will need to move your `config.json` and `spotifyKeys.json` files from your local machine to the server. Just `git clone` this repo on your server and copy those two files over. You can also use `pm2` to run it in the background and start on boot:
 
 ```
 cd vintage-influxdb
