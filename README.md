@@ -77,7 +77,7 @@ yarn start
 
 5. Click the link that was console logged. If you see `Starting to record data...`, you're done!
 
-There is also a board for InfluxDB I have made in the `influxdb-boards` folder.
+There is also a [board](https://github.com/kyleawayan/vintage-influxdb/blob/main/influxdb-boards/overview.json) for InfluxDB I have made in the `influxdb-boards` folder.
 
 ### Deploying on a server
 
