@@ -58,6 +58,9 @@ interface TrackFeatures {
 interface ArtistInfo {
   genres: Array<string>;
   popularity: number;
+  followers: {
+    total: number;
+  };
 }
 
 interface AlbumInfo {
