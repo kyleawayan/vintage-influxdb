@@ -42,6 +42,7 @@ Record your Spotify listening data on [InfluxDB](https://www.influxdata.com/).
 | Tempo                                | `tempo`                 |
 | Time signature                       | `time_signature`        |
 | Artist genre                         | `artist_genre`          |
+| Album release date year              | `year`                  |
 | Album type                           | `album_type`            |
 | Device name you are listening on     | `device_name`           |
 | Device ID you are listening on       | `device_id`             |
