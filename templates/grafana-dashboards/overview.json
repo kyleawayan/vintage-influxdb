@@ -1,0 +1,1157 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 5,
+    "iteration": 1621668765371,
+    "links": [],
+    "panels": [
+        {
+            "datasource": "${InfluxDbSource}",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "graph": false,
+                            "legend": false,
+                            "tooltip": false
+                        },
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "always",
+                        "spanNulls": true
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "s"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 12,
+                "w": 7,
+                "x": 0,
+                "y": 0
+            },
+            "id": 4,
+            "options": {
+                "graph": {},
+                "legend": {
+                    "calcs": [
+                        "last"
+                    ],
+                    "displayMode": "hidden",
+                    "placement": "right"
+                },
+                "tooltipOptions": {
+                    "mode": "single"
+                }
+            },
+            "pluginVersion": "7.5.6",
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "from(bucket: v.bucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"track_name\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\r\n  |> cumulativeSum(columns: [\"_value\"])",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": []
+                }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "Top Tracks",
+            "type": "timeseries"
+        },
+        {
+            "datasource": "${InfluxDbSource}",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "left",
+                        "displayMode": "auto",
+                        "filterable": false
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "s"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 12,
+                "w": 5,
+                "x": 7,
+                "y": 0
+            },
+            "id": 8,
+            "options": {
+                "showHeader": true,
+                "sortBy": []
+            },
+            "pluginVersion": "7.5.6",
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "from(bucket: \"kyle.ayn\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"track_name\", \"artist_name\"])\r\n  |> sum()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": []
+                }
+            ],
+            "title": "Top Tracks",
+            "transformations": [
+                {
+                    "id": "filterFieldsByName",
+                    "options": {}
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {},
+                        "indexByName": {
+                            "_value": 0,
+                            "artist_name": 2,
+                            "track_name": 1
+                        },
+                        "renameByName": {
+                            "_value": "Time",
+                            "artist_name": "Artist Name",
+                            "track_name": "Track Name"
+                        }
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "datasource": "${InfluxDbSource}",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "graph": false,
+                            "legend": false,
+                            "tooltip": false
+                        },
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "always",
+                        "spanNulls": true
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "s"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 12,
+                "w": 9,
+                "x": 12,
+                "y": 0
+            },
+            "id": 5,
+            "options": {
+                "graph": {},
+                "legend": {
+                    "calcs": [
+                        "last"
+                    ],
+                    "displayMode": "hidden",
+                    "placement": "right"
+                },
+                "tooltipOptions": {
+                    "mode": "single"
+                }
+            },
+            "pluginVersion": "7.5.6",
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "from(bucket: v.bucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\r\n  |> cumulativeSum(columns: [\"_value\"])",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": []
+                }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "Top Artists",
+            "type": "timeseries"
+        },
+        {
+            "datasource": "${InfluxDbSource}",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "left",
+                        "displayMode": "auto",
+                        "filterable": false
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "s"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 12,
+                "w": 3,
+                "x": 21,
+                "y": 0
+            },
+            "id": 7,
+            "options": {
+                "showHeader": true
+            },
+            "pluginVersion": "7.5.6",
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "from(bucket: \"kyle.ayn\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\"])\r\n  |> sum()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": []
+                }
+            ],
+            "title": "Top Artists",
+            "transformations": [
+                {
+                    "id": "filterFieldsByName",
+                    "options": {}
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {},
+                        "indexByName": {
+                            "_value": 0,
+                            "artist_name": 1
+                        },
+                        "renameByName": {
+                            "_value": "Time",
+                            "artist_name": "Artist Name"
+                        }
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "datasource": "${InfluxDbSource}",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "s"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 21,
+                "w": 5,
+                "x": 0,
+                "y": 12
+            },
+            "id": 2,
+            "options": {
+                "displayLabels": [
+                    "name",
+                    "value"
+                ],
+                "legend": {
+                    "displayMode": "hidden",
+                    "placement": "bottom",
+                    "values": [
+                        "percent",
+                        "value"
+                    ]
+                },
+                "pieType": "pie",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "text": {}
+            },
+            "pluginVersion": "7.5.6",
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> keep(columns: [\"_time\", \"_value\", \"artist_genre\"])",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": []
+                }
+            ],
+            "title": "Top Genres",
+            "transformations": [],
+            "type": "piechart"
+        },
+        {
+            "cards": {
+                "cardPadding": null,
+                "cardRound": null
+            },
+            "color": {
+                "cardColor": "#b4ff00",
+                "colorScale": "sqrt",
+                "colorScheme": "interpolateOranges",
+                "exponent": 0.5,
+                "mode": "spectrum"
+            },
+            "dataFormat": "timeseries",
+            "datasource": "${InfluxDbSource}",
+            "description": "",
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 16,
+                "w": 6,
+                "x": 5,
+                "y": 12
+            },
+            "heatmap": {},
+            "hideZeroBuckets": false,
+            "highlightCards": true,
+            "id": 10,
+            "legend": {
+                "show": false
+            },
+            "pluginVersion": "7.5.6",
+            "reverseYBuckets": false,
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "from(bucket: v.bucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tempo\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last)",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": []
+                }
+            ],
+            "title": "BPM",
+            "tooltip": {
+                "show": true,
+                "showHistogram": false
+            },
+            "type": "heatmap",
+            "xAxis": {
+                "show": true
+            },
+            "xBucketNumber": null,
+            "xBucketSize": null,
+            "yAxis": {
+                "decimals": null,
+                "format": "short",
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true,
+                "splitFactor": null
+            },
+            "yBucketBound": "auto",
+            "yBucketNumber": null,
+            "yBucketSize": null
+        },
+        {
+            "cards": {
+                "cardPadding": null,
+                "cardRound": null
+            },
+            "color": {
+                "cardColor": "#b4ff00",
+                "colorScale": "sqrt",
+                "colorScheme": "interpolateOranges",
+                "exponent": 0.5,
+                "min": null,
+                "mode": "spectrum"
+            },
+            "dataFormat": "timeseries",
+            "datasource": "${InfluxDbSource}",
+            "description": "",
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 16,
+                "w": 6,
+                "x": 11,
+                "y": 12
+            },
+            "heatmap": {},
+            "hideZeroBuckets": false,
+            "highlightCards": true,
+            "id": 11,
+            "legend": {
+                "show": false
+            },
+            "pluginVersion": "7.5.6",
+            "reverseYBuckets": false,
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "from(bucket: v.bucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"energy\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last)",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": []
+                }
+            ],
+            "title": "Energy",
+            "tooltip": {
+                "show": true,
+                "showHistogram": false
+            },
+            "type": "heatmap",
+            "xAxis": {
+                "show": true
+            },
+            "xBucketNumber": null,
+            "xBucketSize": null,
+            "yAxis": {
+                "decimals": null,
+                "format": "short",
+                "logBase": 1,
+                "max": "1",
+                "min": "0",
+                "show": true,
+                "splitFactor": null
+            },
+            "yBucketBound": "auto",
+            "yBucketNumber": null,
+            "yBucketSize": null
+        },
+        {
+            "aliasColors": {},
+            "bars": true,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "${InfluxDbSource}",
+            "description": "",
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 16,
+                "w": 7,
+                "x": 17,
+                "y": 12
+            },
+            "hiddenSeries": false,
+            "id": 22,
+            "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": false,
+                "total": false,
+                "values": false
+            },
+            "lines": false,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.5.6",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "from(bucket: \"kyle.ayn\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"popularity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": []
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Popularity Distribution",
+            "tooltip": {
+                "shared": false,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "max": 100,
+                "min": 0,
+                "mode": "histogram",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:73",
+                    "format": "short",
+                    "label": "Count",
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:74",
+                    "format": "short",
+                    "label": "",
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": false
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "datasource": "${InfluxDbSource}",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "decimals": 2,
+                    "mappings": [],
+                    "max": 200,
+                    "min": 60,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 6,
+                "x": 5,
+                "y": 28
+            },
+            "id": 16,
+            "options": {
+                "reduceOptions": {
+                    "calcs": [],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": false,
+                "text": {}
+            },
+            "pluginVersion": "7.5.6",
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "from(bucket: v.bucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tempo\")\r\n  |> group()\r\n  |> mean()",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": []
+                }
+            ],
+            "title": "Average BPM",
+            "type": "gauge"
+        },
+        {
+            "datasource": "${InfluxDbSource}",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "decimals": 2,
+                    "mappings": [],
+                    "max": 1,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "percentunit"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 6,
+                "x": 11,
+                "y": 28
+            },
+            "id": 17,
+            "options": {
+                "reduceOptions": {
+                    "calcs": [],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": false,
+                "text": {}
+            },
+            "pluginVersion": "7.5.6",
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "from(bucket: v.bucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"energy\")\r\n  |> group()\r\n  |> mean()",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": []
+                }
+            ],
+            "title": "Average Energy",
+            "type": "gauge"
+        },
+        {
+            "datasource": "${InfluxDbSource}",
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "percent"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 7,
+                "x": 17,
+                "y": 28
+            },
+            "id": 24,
+            "options": {
+                "reduceOptions": {
+                    "calcs": [],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": false,
+                "text": {}
+            },
+            "pluginVersion": "7.5.6",
+            "targets": [
+                {
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "from(bucket: v.bucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"popularity\")\r\n  |> group()\r\n  |> mean()",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": []
+                }
+            ],
+            "title": "Average Popularity",
+            "type": "gauge"
+        }
+    ],
+    "refresh": false,
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+        "list": [
+            {
+                "current": {
+                    "selected": true,
+                    "text": "Vintage InfluxDB",
+                    "value": "Vintage InfluxDB"
+                },
+                "description": null,
+                "error": null,
+                "hide": 0,
+                "includeAll": false,
+                "label": "",
+                "multi": false,
+                "name": "InfluxDbSource",
+                "options": [],
+                "query": "influxdb",
+                "queryValue": "",
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "type": "datasource"
+            }
+        ]
+    },
+    "time": {
+        "from": "now-7d",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Overview",
+    "uid": "y43AI5qMk",
+    "version": 6
+}

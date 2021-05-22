@@ -2,7 +2,13 @@
 
 Record your Spotify listening data on [InfluxDB](https://www.influxdata.com/).
 
-![](https://cdn.discordapp.com/attachments/820803676502753281/843664678466093096/unknown.png)
+Dashboard with InfluxDB
+
+![Dashboard with InfluxDB](https://cdn.discordapp.com/attachments/820226193482973194/845563820604260352/unknown.png)
+
+Dashboard with Grafana
+
+![Dashboard with Grafana](https://cdn.discordapp.com/attachments/820226193482973194/845562866663817216/unknown.png)
 
 ## What's collected
 
@@ -88,7 +94,7 @@ yarn start
 
 5. Click the link that was console logged. If you see `Starting to record data...`, you're done!
 
-There is also a [board](https://github.com/kyleawayan/vintage-influxdb/blob/main/influxdb-boards/overview.json) for InfluxDB I have made in the `influxdb-boards` folder.
+There are also dashboard templates for InfluxDB and Grafana that I have made in the `templates` folder.
 
 ### Deploying on a server
 

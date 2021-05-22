@@ -41,10 +41,6 @@
           "data": [
             {
               "type": "cell",
-              "id": "078672c1f6d70000"
-            },
-            {
-              "type": "cell",
               "id": "07868019c85af000"
             },
             {
@@ -74,6 +70,18 @@
             {
               "type": "cell",
               "id": "0789fc7acce08000"
+            },
+            {
+              "type": "cell",
+              "id": "07907b203416f000"
+            },
+            {
+              "type": "cell",
+              "id": "0790bd8543b1b000"
+            },
+            {
+              "type": "cell",
+              "id": "0790bdbb3bf31000"
             }
           ]
         },
@@ -144,29 +152,11 @@
         }
       },
       {
-        "id": "078672c1f6d70000",
-        "type": "cell",
-        "attributes": {
-          "x": 0,
-          "y": 0,
-          "w": 4,
-          "h": 7
-        },
-        "relationships": {
-          "view": {
-            "data": {
-              "type": "view",
-              "id": "078672c1f6d70000"
-            }
-          }
-        }
-      },
-      {
         "id": "07868019c85af000",
         "type": "cell",
         "attributes": {
           "x": 0,
-          "y": 7,
+          "y": 8,
           "w": 4,
           "h": 4
         },
@@ -183,10 +173,10 @@
         "id": "07868506f45af000",
         "type": "cell",
         "attributes": {
-          "x": 4,
+          "x": 0,
           "y": 0,
-          "w": 8,
-          "h": 4
+          "w": 6,
+          "h": 5
         },
         "relationships": {
           "view": {
@@ -202,7 +192,7 @@
         "type": "cell",
         "attributes": {
           "x": 4,
-          "y": 7,
+          "y": 8,
           "w": 4,
           "h": 4
         },
@@ -220,7 +210,7 @@
         "type": "cell",
         "attributes": {
           "x": 0,
-          "y": 11,
+          "y": 12,
           "w": 4,
           "h": 2
         },
@@ -238,7 +228,7 @@
         "type": "cell",
         "attributes": {
           "x": 4,
-          "y": 11,
+          "y": 12,
           "w": 4,
           "h": 2
         },
@@ -255,10 +245,10 @@
         "id": "07875694d9ac7000",
         "type": "cell",
         "attributes": {
-          "x": 8,
-          "y": 7,
+          "x": 4,
+          "y": 5,
           "w": 4,
-          "h": 6
+          "h": 3
         },
         "relationships": {
           "view": {
@@ -273,8 +263,8 @@
         "id": "078759abcc788000",
         "type": "cell",
         "attributes": {
-          "x": 4,
-          "y": 4,
+          "x": 0,
+          "y": 5,
           "w": 4,
           "h": 3
         },
@@ -292,7 +282,7 @@
         "type": "cell",
         "attributes": {
           "x": 8,
-          "y": 4,
+          "y": 5,
           "w": 4,
           "h": 3
         },
@@ -306,107 +296,56 @@
         }
       },
       {
-        "type": "view",
-        "id": "078672c1f6d70000",
+        "id": "07907b203416f000",
+        "type": "cell",
         "attributes": {
-          "name": "Activity",
-          "properties": {
-            "shape": "chronograf-v2",
-            "queries": [
-              {
-                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\", \"track_name\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: last)\n  |> map(fn: (r) => ({ r with _value: r._value / 60 }))",
-                "editMode": "advanced",
-                "name": "",
-                "builderConfig": {
-                  "buckets": [],
-                  "tags": [
-                    {
-                      "key": "_measurement",
-                      "values": [],
-                      "aggregateFunctionType": "filter"
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "name": "mean"
-                    }
-                  ],
-                  "aggregateWindow": {
-                    "period": "auto",
-                    "fillValues": false
-                  }
-                }
-              }
-            ],
-            "axes": {
-              "x": {
-                "bounds": [
-                  "",
-                  ""
-                ],
-                "label": "",
-                "prefix": "",
-                "suffix": "",
-                "base": "10",
-                "scale": "linear"
-              },
-              "y": {
-                "bounds": [
-                  "",
-                  ""
-                ],
-                "label": "Minutes Listened",
-                "prefix": "",
-                "suffix": "",
-                "base": "10",
-                "scale": "linear"
-              }
-            },
-            "type": "xy",
-            "staticLegend": {},
-            "geom": "monotoneX",
-            "colors": [
-              {
-                "id": "e759d1dd-65a7-4377-b552-24ba33a1ba4d",
-                "type": "scale",
-                "hex": "#31C0F6",
-                "name": "Nineteen Eighty Four",
-                "value": 0
-              },
-              {
-                "id": "54d3b6ef-0433-42af-806a-9d55f6dd8c57",
-                "type": "scale",
-                "hex": "#A500A5",
-                "name": "Nineteen Eighty Four",
-                "value": 0
-              },
-              {
-                "id": "bb2335dd-8093-4860-81f7-3dddb082ec74",
-                "type": "scale",
-                "hex": "#FF7E27",
-                "name": "Nineteen Eighty Four",
-                "value": 0
-              }
-            ],
-            "note": "",
-            "showNoteWhenEmpty": false,
-            "xColumn": "",
-            "generateXAxisTicks": [],
-            "xTotalTicks": 0,
-            "xTickStart": 0,
-            "xTickStep": 0,
-            "yColumn": "",
-            "generateYAxisTicks": [],
-            "yTotalTicks": 0,
-            "yTickStart": 0,
-            "yTickStep": 0,
-            "shadeBelow": true,
-            "position": "overlaid",
-            "timeFormat": "hh:mm a",
-            "hoverDimension": "auto",
-            "legendColorizeRows": true,
-            "legendOpacity": 1,
-            "legendOrientationThreshold": 100000000
+          "x": 6,
+          "y": 0,
+          "w": 6,
+          "h": 5
+        },
+        "relationships": {
+          "view": {
+            "data": {
+              "type": "view",
+              "id": "07907b203416f000"
+            }
+          }
+        }
+      },
+      {
+        "id": "0790bd8543b1b000",
+        "type": "cell",
+        "attributes": {
+          "x": 8,
+          "y": 8,
+          "w": 4,
+          "h": 4
+        },
+        "relationships": {
+          "view": {
+            "data": {
+              "type": "view",
+              "id": "0790bd8543b1b000"
+            }
+          }
+        }
+      },
+      {
+        "id": "0790bdbb3bf31000",
+        "type": "cell",
+        "attributes": {
+          "x": 8,
+          "y": 12,
+          "w": 4,
+          "h": 2
+        },
+        "relationships": {
+          "view": {
+            "data": {
+              "type": "view",
+              "id": "0790bdbb3bf31000"
+            }
           }
         }
       },
@@ -488,12 +427,12 @@
         "type": "view",
         "id": "07868506f45af000",
         "attributes": {
-          "name": "Top Songs",
+          "name": "Top Tracks",
           "properties": {
             "shape": "chronograf-v2",
             "queries": [
               {
-                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\", \"track_name\"])\n  |> map(fn: (r) => ({ r with _value: r._value / 60 }))\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: true)\n  |> cumulativeSum(columns: [\"_value\"])",
+                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> keep(columns: [\"_time\", \"_value\", \"track_name\"])\n  |> map(fn: (r) => ({ r with _value: float(v: r._value) / 3600.0 }))\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\n  |> cumulativeSum(columns: [\"_value\"])",
                 "editMode": "advanced",
                 "name": "",
                 "builderConfig": {
@@ -534,7 +473,7 @@
                   "",
                   ""
                 ],
-                "label": "Total Minutes Listened",
+                "label": "Total Hours Listened",
                 "prefix": "",
                 "suffix": "",
                 "base": "10",
@@ -543,7 +482,7 @@
             },
             "type": "xy",
             "staticLegend": {},
-            "geom": "step",
+            "geom": "monotoneX",
             "colors": [
               {
                 "id": "64879223-d2c9-4d46-9e47-3b98df9e0aa4",
@@ -1313,6 +1252,239 @@
             "timeFormat": "YYYY-MM-DD HH:mm:ss",
             "decimalPlaces": {
               "isEnforced": false,
+              "digits": 2
+            },
+            "note": "",
+            "showNoteWhenEmpty": false
+          }
+        }
+      },
+      {
+        "type": "view",
+        "id": "07907b203416f000",
+        "attributes": {
+          "name": "Top Artists",
+          "properties": {
+            "shape": "chronograf-v2",
+            "queries": [
+              {
+                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\"])\n  |> map(fn: (r) => ({ r with _value: float(v: r._value) / 3600.0 }))\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\n  |> cumulativeSum(columns: [\"_value\"])",
+                "editMode": "advanced",
+                "name": "",
+                "builderConfig": {
+                  "buckets": [],
+                  "tags": [
+                    {
+                      "key": "_measurement",
+                      "values": [],
+                      "aggregateFunctionType": "filter"
+                    }
+                  ],
+                  "functions": [
+                    {
+                      "name": "mean"
+                    }
+                  ],
+                  "aggregateWindow": {
+                    "period": "auto",
+                    "fillValues": false
+                  }
+                }
+              }
+            ],
+            "axes": {
+              "x": {
+                "bounds": [
+                  "",
+                  ""
+                ],
+                "label": "",
+                "prefix": "",
+                "suffix": "",
+                "base": "10",
+                "scale": "linear"
+              },
+              "y": {
+                "bounds": [
+                  "",
+                  ""
+                ],
+                "label": "Total Hours Listened",
+                "prefix": "",
+                "suffix": "",
+                "base": "10",
+                "scale": "linear"
+              }
+            },
+            "type": "xy",
+            "staticLegend": {},
+            "geom": "monotoneX",
+            "colors": [
+              {
+                "id": "64879223-d2c9-4d46-9e47-3b98df9e0aa4",
+                "type": "scale",
+                "hex": "#31C0F6",
+                "name": "Nineteen Eighty Four",
+                "value": 0
+              },
+              {
+                "id": "2e8e71f9-5a10-4997-9c0a-3f6c5337cf2d",
+                "type": "scale",
+                "hex": "#A500A5",
+                "name": "Nineteen Eighty Four",
+                "value": 0
+              },
+              {
+                "id": "389084ac-3f83-4bdc-8d95-44bddba5cec3",
+                "type": "scale",
+                "hex": "#FF7E27",
+                "name": "Nineteen Eighty Four",
+                "value": 0
+              }
+            ],
+            "note": "",
+            "showNoteWhenEmpty": false,
+            "xColumn": "_time",
+            "generateXAxisTicks": [],
+            "xTotalTicks": 0,
+            "xTickStart": 0,
+            "xTickStep": 0,
+            "yColumn": "_value",
+            "generateYAxisTicks": [],
+            "yTotalTicks": 0,
+            "yTickStart": 0,
+            "yTickStep": 0,
+            "shadeBelow": true,
+            "position": "overlaid",
+            "timeFormat": "hh:mm a",
+            "hoverDimension": "auto",
+            "legendColorizeRows": true,
+            "legendOpacity": 1,
+            "legendOrientationThreshold": 100000000
+          }
+        }
+      },
+      {
+        "type": "view",
+        "id": "0790bd8543b1b000",
+        "attributes": {
+          "name": "Popularity Distribution",
+          "properties": {
+            "shape": "chronograf-v2",
+            "type": "histogram",
+            "queries": [
+              {
+                "text": "from(bucket: \"kyle.ayn\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"popularity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+                "editMode": "advanced",
+                "name": "",
+                "builderConfig": {
+                  "buckets": [],
+                  "tags": [
+                    {
+                      "key": "_measurement",
+                      "values": [],
+                      "aggregateFunctionType": "filter"
+                    }
+                  ],
+                  "functions": [
+                    {
+                      "name": "mean"
+                    }
+                  ],
+                  "aggregateWindow": {
+                    "period": "auto",
+                    "fillValues": false
+                  }
+                }
+              }
+            ],
+            "colors": [
+              {
+                "id": "8639c4b5-3244-4a46-9377-25ac0a61ffe1",
+                "type": "scale",
+                "hex": "#31C0F6",
+                "name": "Nineteen Eighty Four",
+                "value": 0
+              },
+              {
+                "id": "2aeea2a3-2b89-4799-8093-41cfd0e6bf06",
+                "type": "scale",
+                "hex": "#A500A5",
+                "name": "Nineteen Eighty Four",
+                "value": 0
+              },
+              {
+                "id": "5ff4ad3f-0a94-4746-b487-368013dc52cb",
+                "type": "scale",
+                "hex": "#FF7E27",
+                "name": "Nineteen Eighty Four",
+                "value": 0
+              }
+            ],
+            "xColumn": "_value",
+            "fillColumns": [
+              "artist_genre"
+            ],
+            "xAxisLabel": "",
+            "position": "stacked",
+            "binCount": 30,
+            "note": "",
+            "showNoteWhenEmpty": false,
+            "legendColorizeRows": true,
+            "legendOpacity": 1,
+            "legendOrientationThreshold": 100000000
+          }
+        }
+      },
+      {
+        "type": "view",
+        "id": "0790bdbb3bf31000",
+        "attributes": {
+          "name": "Average Popularity",
+          "properties": {
+            "shape": "chronograf-v2",
+            "type": "single-stat",
+            "queries": [
+              {
+                "text": "from(bucket: v.bucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"popularity\")\r\n  |> group()\r\n  |> mean()",
+                "editMode": "advanced",
+                "name": "",
+                "builderConfig": {
+                  "buckets": [],
+                  "tags": [
+                    {
+                      "key": "_measurement",
+                      "values": [],
+                      "aggregateFunctionType": "filter"
+                    }
+                  ],
+                  "functions": [
+                    {
+                      "name": "mean"
+                    }
+                  ],
+                  "aggregateWindow": {
+                    "period": "auto",
+                    "fillValues": false
+                  }
+                }
+              }
+            ],
+            "prefix": "",
+            "tickPrefix": "",
+            "suffix": "%",
+            "tickSuffix": "",
+            "colors": [
+              {
+                "id": "base",
+                "type": "text",
+                "hex": "#00C9FF",
+                "name": "laser",
+                "value": 0
+              }
+            ],
+            "decimalPlaces": {
+              "isEnforced": true,
               "digits": 2
             },
             "note": "",
