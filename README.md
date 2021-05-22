@@ -48,6 +48,7 @@ Dashboard with Grafana
 | Tempo                                | `tempo`                 |
 | Time signature                       | `time_signature`        |
 | Artist genre                         | `artist_genre`          |
+| Album release date year              | `year`                  |
 | Album type                           | `album_type`            |
 | Device name you are listening on     | `device_name`           |
 | Device ID you are listening on       | `device_id`             |
@@ -92,7 +93,7 @@ yarn install
 yarn start
 ```
 
-5. Click the link that was console logged. If you see `Starting to record data...`, you're done!
+5. Click the link that was console logged. If you see `Starting to record data...`, you're done! You can make sure it is working by playing and skipping around tracks on Spotify. It will console log some information and write data to the database about the track when it is finished playing, skipped, or paused. Make sure to watch the logs for a few minutes to make sure InfluxDB doesn't error.
 
 There are also dashboard templates for InfluxDB and Grafana that I have made in the `templates` folder.
 
