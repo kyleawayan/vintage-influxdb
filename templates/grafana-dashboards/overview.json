@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 5,
-  "iteration": 1624497310286,
+  "iteration": 1624497935646,
   "links": [],
   "panels": [
     {
@@ -499,9 +499,7 @@
         },
         "pieType": "pie",
         "reduceOptions": {
-          "calcs": [
-            "sum"
-          ],
+          "calcs": [],
           "fields": "",
           "values": false
         },
@@ -530,7 +528,7 @@
           "hide": false,
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> toInt()\n  |> keep(columns: [\"_time\", \"_value\", \"artist_genre\"])",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> toInt()\n  |> keep(columns: [\"_time\", \"_value\", \"artist_genre\"])\n  |> sum()",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -1175,7 +1173,7 @@
     ]
   },
   "time": {
-    "from": "now-30d",
+    "from": "now-90d",
     "to": "now"
   },
   "timepicker": {},
