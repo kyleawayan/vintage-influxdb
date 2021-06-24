@@ -359,7 +359,7 @@
             "type": "heatmap",
             "queries": [
               {
-                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"tempo\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: mean)",
+                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"tempo\")\n  |> keep(columns: [\"_time\", \"_value\"])",
                 "editMode": "advanced",
                 "name": "",
                 "builderConfig": {
@@ -726,7 +726,7 @@
             "type": "heatmap",
             "queries": [
               {
-                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"energy\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: mean)",
+                "text": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"energy\")\n  |> keep(columns: [\"_time\", \"_value\"])",
                 "editMode": "advanced",
                 "name": "",
                 "builderConfig": {
