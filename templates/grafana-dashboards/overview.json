@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 5,
-  "iteration": 1623164053512,
+  "iteration": 1624497310286,
   "links": [],
   "panels": [
     {
@@ -36,7 +36,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 1,
@@ -45,7 +46,14 @@
               "type": "linear"
             },
             "showPoints": "always",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -81,7 +89,7 @@
           "displayMode": "hidden",
           "placement": "right"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "single"
         }
       },
@@ -167,7 +175,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "targets": [
         {
           "groupBy": [
@@ -249,7 +257,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 1,
@@ -258,7 +267,14 @@
               "type": "linear"
             },
             "showPoints": "always",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -294,7 +310,7 @@
           "displayMode": "hidden",
           "placement": "right"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "single"
         }
       },
@@ -379,7 +395,7 @@
       "options": {
         "showHeader": true
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "targets": [
         {
           "groupBy": [
@@ -449,20 +465,14 @@
           "color": {
             "mode": "palette-classic"
           },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
           },
+          "mappings": [],
           "unit": "s"
         },
         "overrides": []
@@ -495,7 +505,10 @@
           "fields": "",
           "values": false
         },
-        "text": {}
+        "text": {},
+        "tooltip": {
+          "mode": "single"
+        }
       },
       "pluginVersion": "7.5.6",
       "targets": [
@@ -557,10 +570,6 @@
       "dataFormat": "timeseries",
       "datasource": "${InfluxDbSource}",
       "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 16,
         "w": 6,
@@ -594,7 +603,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tempo\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last)",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tempo\")\r\n  |> keep(columns: [\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean)",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -655,10 +664,6 @@
       "dataFormat": "timeseries",
       "datasource": "${InfluxDbSource}",
       "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 16,
         "w": 6,
@@ -692,7 +697,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"energy\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last)",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"energy\")\r\n  |> keep(columns: [\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean)",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -744,10 +749,6 @@
       "dashes": false,
       "datasource": "${InfluxDbSource}",
       "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -774,7 +775,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -800,7 +801,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"popularity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"popularity\")\r\n  |> keep(columns: [\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -906,7 +907,7 @@
         "showThresholdMarkers": false,
         "text": {}
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "targets": [
         {
           "groupBy": [
@@ -925,7 +926,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tempo\")\r\n  |> group()\r\n  |> mean()",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tempo\")\r\n  |> keep(columns: [\"_value\"])\r\n  |> group()\r\n  |> mean()",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -990,7 +991,7 @@
         "showThresholdMarkers": false,
         "text": {}
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "targets": [
         {
           "groupBy": [
@@ -1009,7 +1010,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"energy\")\r\n  |> group()\r\n  |> mean()",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"energy\")\r\n  |> keep(columns: [\"_value\"])\r\n  |> group()\r\n  |> mean()",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -1042,6 +1043,8 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1072,7 +1075,7 @@
         "showThresholdMarkers": false,
         "text": {}
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.3",
       "targets": [
         {
           "groupBy": [
@@ -1091,7 +1094,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"popularity\")\r\n  |> toInt()\r\n  |> group()\r\n  |> mean()",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_field\"] == \"popularity\")\r\n  |> keep(columns: [\"_value\"])\r\n  |> toInt()\r\n  |> group()\r\n  |> mean()",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -1117,7 +1120,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 27,
+  "schemaVersion": 30,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1146,7 +1149,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "kyle.ayn",
           "value": "kyle.ayn"
         },
@@ -1172,12 +1175,12 @@
     ]
   },
   "time": {
-    "from": "now-30d",
+    "from": "now-90d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Overview",
   "uid": "y43AI5qMk",
-  "version": 10
+  "version": 12
 }
