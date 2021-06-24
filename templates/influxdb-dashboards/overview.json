@@ -1198,7 +1198,7 @@
             "type": "histogram",
             "queries": [
               {
-                "text": "from(bucket: \"kyle.ayn\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"popularity\")\r\n  |> keep(columns: [\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+                "text": "from(bucket: \"kyle.ayn\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"popularity\")\r\n  |> keep(columns: [\"_time\", \"_value\"])",
                 "editMode": "advanced",
                 "name": "",
                 "builderConfig": {
@@ -1246,10 +1246,7 @@
               }
             ],
             "xColumn": "_value",
-            "fillColumns": [
-              "_start",
-              "_stop"
-            ],
+            "fillColumns": [],
             "xAxisLabel": "",
             "position": "stacked",
             "binCount": 30,
