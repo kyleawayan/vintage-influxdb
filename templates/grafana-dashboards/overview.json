@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 5,
-  "iteration": 1624497935646,
+  "iteration": 1624498174683,
   "links": [],
   "panels": [
     {
@@ -499,7 +499,9 @@
         },
         "pieType": "pie",
         "reduceOptions": {
-          "calcs": [],
+          "calcs": [
+            "sum"
+          ],
           "fields": "",
           "values": false
         },
@@ -528,7 +530,7 @@
           "hide": false,
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> toInt()\n  |> keep(columns: [\"_time\", \"_value\", \"artist_genre\"])\n  |> sum()",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> toInt()\n  |> keep(columns: [\"_time\", \"_value\", \"artist_genre\"])",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -601,7 +603,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tempo\")\r\n  |> keep(columns: [\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean)",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"tempo\")\r\n  |> keep(columns: [\"_time\", \"_value\"])",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -695,7 +697,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"energy\")\r\n  |> keep(columns: [\"_time\", \"_value\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean)",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"energy\")\r\n  |> keep(columns: [\"_time\", \"_value\"])",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -1180,5 +1182,5 @@
   "timezone": "",
   "title": "Overview",
   "uid": "y43AI5qMk",
-  "version": 12
+  "version": 13
 }
