@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 5,
-  "iteration": 1624783490884,
+  "iteration": 1627793580382,
   "links": [],
   "panels": [
     {
@@ -112,7 +112,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> toInt()\r\n  |> keep(columns: [\"_time\", \"_value\", \"track_name\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\r\n  |> cumulativeSum(columns: [\"_value\"])",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> toInt()\r\n  |> keep(columns: [\"_time\", \"_value\", \"track_name\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\r\n  |> cumulativeSum(columns: [\"_value\"])\r\n  |> filter(fn: (r) => r._value > 60 )",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -175,7 +175,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -333,7 +333,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> toInt()\r\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\r\n  |> cumulativeSum(columns: [\"_value\"])",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> toInt()\r\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\r\n  |> cumulativeSum(columns: [\"_value\"])\r\n  |> filter(fn: (r) => r._value > 60 )",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
@@ -395,7 +395,7 @@
       "options": {
         "showHeader": true
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -782,7 +782,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.0.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -914,7 +914,7 @@
         "showThresholdMarkers": false,
         "text": {}
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -998,7 +998,7 @@
         "showThresholdMarkers": false,
         "text": {}
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -1082,7 +1082,7 @@
         "showThresholdMarkers": false,
         "text": {}
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "groupBy": [
@@ -1189,5 +1189,5 @@
   "timezone": "",
   "title": "Overview",
   "uid": "y43AI5qMk",
-  "version": 17
+  "version": 19
 }
