@@ -10,9 +10,6 @@ const client = new InfluxDB({
   token: token,
 });
 
-const writeApi = client.getWriteApi(org, bucket);
-writeApi.useDefaultTags({ host: config.influxDbHostName });
-
 if (process.env.TS_NODE_DEV == "true") {
   console.warn("In development mode, not sending anything to InfluxDB.");
 }
@@ -32,6 +29,8 @@ export default function writeToDb(
     `Artist: ${spotifyData.item.artists[0].name}`
   );
   if (process.env.TS_NODE_DEV != "true") {
+    const writeApi = client.getWriteApi(org, bucket);
+    writeApi.useDefaultTags({ host: config.influxDbHostName });
     const point = new Point("track")
       .intField("seconds_played", duration) // .intField("playing", playing)
       .tag("device_id", spotifyData.device.id)
@@ -73,5 +72,6 @@ export default function writeToDb(
       .intField("artist_followers", artistInfo.followers.total)
       .timestamp(timestamp);
     writeApi.writePoint(point);
+    writeApi.close();
   }
 }
