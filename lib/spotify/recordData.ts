@@ -5,7 +5,12 @@ import writeToDb from "../influxDb/writeToDb";
 import { requestRefreshedAccessToken } from "../spotifyAuth/spotifyAuth";
 import { Measurer } from "../utils/measureDuration";
 
-const projectPath = path.join(__dirname, "..", "..", "..", "spotifyKeys.json");
+let projectPath = "";
+if (process.env.TS_NODE_DEV == "true") {
+  projectPath = path.join(__dirname, "..", "..", "spotifyKeys.json");
+} else {
+  projectPath = path.join(__dirname, "..", "..", "..", "spotifyKeys.json");
+}
 
 let currentAccessToken = "";
 let currentRefreshToken = "";

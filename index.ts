@@ -11,7 +11,13 @@ import { urlToQueryStrings } from "./lib/utils/parseUrl";
 
 const server = new CallbackServer();
 
-const spotifyKeysJsonPath = path.join(__dirname, "..", "spotifyKeys.json");
+let spotifyKeysJsonPath;
+
+if (process.env.TS_NODE_DEV == "true") {
+  spotifyKeysJsonPath = "./spotifyKeys.json";
+} else {
+  spotifyKeysJsonPath = path.join(__dirname, "..", "spotifyKeys.json");
+}
 
 if (fs.existsSync(spotifyKeysJsonPath)) {
   prepareToRecordData();
