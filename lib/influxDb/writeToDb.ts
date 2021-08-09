@@ -29,12 +29,7 @@ export default function writeToDb(
     `[${timestamp.toUTCString()}]`,
     `Seconds listened to: ${duration} /`,
     `Title: ${spotifyData.item.name} /`,
-    `BPM: ${trackFeatures.tempo} /`,
-    `Artist genre: ${artistInfo.genres[0]} /`,
-    `Album popularity: ${albumInfo.popularity} /`,
-    `Year: ${new Date(spotifyData.item.album.release_date)
-      .getFullYear()
-      .toString()}`
+    `Artist: ${spotifyData.item.artists[0].name}`
   );
   if (process.env.TS_NODE_DEV != "true") {
     const point = new Point("track")
