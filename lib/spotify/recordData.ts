@@ -141,7 +141,7 @@ async function recordData(): Promise<void> {
       //   }
       // }
     } catch (e) {
-      console.error(e);
+      console.error(e.response.data);
       running = false;
     }
 
@@ -167,7 +167,7 @@ function prepareToRecordData(): void {
         running = true;
         recordData();
       } catch (e) {
-        console.error(e);
+        console.error(e.response.data);
         console.error("Error refreshing token. Try deleting spotifyKeys.json");
       }
     } else {
