@@ -24,9 +24,9 @@ export default function writeToDb(
 ): void {
   console.log(
     `[${timestamp.toUTCString()}]`,
-    `Seconds listened to: ${duration} /`,
-    `Title: ${spotifyData.item.name} /`,
-    `Artist: ${spotifyData.item.artists[0].name}`
+    `${duration} sec >`,
+    `${spotifyData.item.name} -`,
+    `${spotifyData.item.artists[0].name}`
   );
   if (process.env.TS_NODE_DEV != "true") {
     const writeApi = client.getWriteApi(org, bucket);
