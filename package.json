@@ -1,6 +1,6 @@
 {
   "name": "vintage-influxdb",
-  "version": "0.5.15",
+  "version": "0.6.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
