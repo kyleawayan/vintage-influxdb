@@ -24,7 +24,7 @@ export default function writeToDb(
 ): void {
   console.log(
     `[${timestamp.toUTCString()}]`,
-    `${duration} sec >`,
+    `${duration} sec:`,
     `${spotifyData.item.name} -`,
     `${spotifyData.item.artists[0].name}`
   );
