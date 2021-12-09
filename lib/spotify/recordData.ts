@@ -107,7 +107,7 @@ async function recordData(): Promise<void> {
         appRunning = false;
       }
     } catch (e) {
-      console.error(e.response.data);
+      console.error(e);
       running = false;
     }
 
