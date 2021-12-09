@@ -51,7 +51,7 @@ async function getAccessTokenAndSave(
       await saveToJSON(accessTokenResponse.data);
       return Promise.resolve();
     } catch (e) {
-      console.error(e.response.data);
+      console.error(e);
     }
   } else {
     console.error("Invalid state");
