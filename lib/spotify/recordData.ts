@@ -106,8 +106,42 @@ async function recordData(): Promise<void> {
         }
         appRunning = false;
       }
+
+      //   if (result) {
+      //     // If there was a change
+      //     if (lastWroteSpotifyData) {
+      //       // If Spotify app was just opened, don't write a 0 state when a song starts playing
+      //       writeToDb(result.track, trackFeatures, 0, timestamp);
+      //     }
+      //     if (durationMeasurer.playing) {
+      //       // Just skipped song
+      //       writeToDb(spotifyData, trackFeatures, 1);
+      //       lastWroteSpotifyData = spotifyData;
+      //       lastWroteTrackFeatures = trackFeatures;
+      //     } else {
+      //       // Paused song
+      //       lastWroteSpotifyData = null;
+      //       lastWroteTrackFeatures = null;
+      //     }
+      //   } else if (
+      //     durationMeasurer.playing &&
+      //     lastWroteSpotifyData?.item.id != spotifyData.item.id
+      //   ) {
+      //     // For startup, when there's no track in lastWroteItem
+      //     writeToDb(spotifyData, trackFeatures, 1);
+      //     lastWroteSpotifyData = spotifyData;
+      //     lastWroteTrackFeatures = trackFeatures;
+      //   }
+      // } else {
+      //   if (lastWroteSpotifyData && lastWroteTrackFeatures) {
+      //     // Spotify app was closed
+      //     writeToDb(lastWroteSpotifyData, lastWroteTrackFeatures, 0, timestamp);
+      //     lastWroteSpotifyData = null;
+      //     lastWroteTrackFeatures = null;
+      //   }
+      // }
     } catch (e) {
-      console.error(e);
+      console.error(e.response.data);
       running = false;
     }
 
@@ -133,7 +167,7 @@ function prepareToRecordData(): void {
         running = true;
         recordData();
       } catch (e) {
-        console.error(e);
+        console.error(e.response.data);
         console.error("Error refreshing token. Try deleting spotifyKeys.json");
       }
     } else {
