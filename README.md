@@ -5,12 +5,12 @@ Record your Spotify listening data on [InfluxDB](https://www.influxdata.com/).
 Dashboard with InfluxDB
 [template](https://github.com/kyleawayan/vintage-influxdb/blob/main/templates/influxdb-dashboards/overview.json)
 
-![Dashboard with InfluxDB](https://cdn.discordapp.com/attachments/820226193482973194/845563820604260352/unknown.png)
+![Dashboard with InfluxDB](https://kylan.s3.us-west-1.amazonaws.com/vintage-influxdb/influxdb.webp)
 
 Dashboard with Grafana
 [template](https://github.com/kyleawayan/vintage-influxdb/blob/main/templates/grafana-dashboards/overview.json)
 
-![Dashboard with Grafana](https://cdn.discordapp.com/attachments/820226193482973194/845562866663817216/unknown.png)
+![Dashboard with Grafana](https://kylan.s3.us-west-1.amazonaws.com/vintage-influxdb/grafana.webp)
 
 ## What's collected
 
@@ -95,9 +95,11 @@ yarn install
 yarn start
 ```
 
-5. Click the link that was console logged. If you see `Starting to record data...`, you're done! You can make sure it is working by playing and skipping around tracks on Spotify. It will console log some information and write data to the database about the track when it is finished playing, skipped, or paused. Make sure to watch the logs for a few minutes to make sure InfluxDB doesn't error.
+5. Click the link that was console logged. If you see `Starting to record data...`, you're done! You can make sure it is working by playing and skipping around tracks on Spotify. It will console log some information and write data to the database about the track when it is finished playing, skipped, or paused.
 
-There are also dashboard templates for InfluxDB and Grafana that I have made in the `templates` folder.
+There is a bug where sometimes the token won't refresh correctly, and `vintage-influxdb` will just freeze. A temporary fix is to [restart `vintage-influxdb` daily](https://github.com/kyleawayan/vintage-influxdb/issues/1).
+
+There are dashboard templates for InfluxDB and Grafana that I have made in the `templates` folder.
 
 ### Deploying on a server
 
@@ -116,4 +118,8 @@ pm2 startup
 yarn dev
 ```
 
-This will auto-compile on file changes using `ts-node-dev`. Writing to the database will also be disabled.
+This will auto-compile on file changes using `ts-node-dev`. **Make sure to use another InfluxDB database or bucket for development!**
+
+### To Do
+
+Check out the [Projects page](https://github.com/kyleawayan/vintage-influxdb/projects) for upcoming versions.

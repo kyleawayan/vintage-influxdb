@@ -8,19 +8,29 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 5,
-  "iteration": 1628117932492,
+  "iteration": 1640759874931,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "datasource": "${InfluxDbSource}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${InfluxDbSource}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -39,13 +49,16 @@
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "smooth",
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "always",
+            "showPoints": "auto",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -75,7 +88,7 @@
       },
       "gridPos": {
         "h": 12,
-        "w": 7,
+        "w": 12,
         "x": 0,
         "y": 0
       },
@@ -83,11 +96,11 @@
       "options": {
         "graph": {},
         "legend": {
-          "calcs": [
-            "last"
-          ],
-          "displayMode": "hidden",
-          "placement": "right"
+          "calcs": ["last"],
+          "displayMode": "table",
+          "placement": "right",
+          "sortBy": "Last",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "single"
@@ -96,32 +109,30 @@
       "pluginVersion": "7.5.6",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "tgxxPEjMz"
+          },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> toInt()\r\n  |> keep(columns: [\"_time\", \"_value\", \"track_name\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\r\n  |> cumulativeSum(columns: [\"_value\"])\r\n  |> filter(fn: (r) => r._value > 60 )",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> toInt()\r\n  |> keep(columns: [\"_time\", \"_value\", \"track_name\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\r\n  |> cumulativeSum(columns: [\"_value\"])\r\n  |> filter(fn: (r) => r._value > 240 )",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -133,115 +144,14 @@
           "tags": []
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Top Tracks",
       "type": "timeseries"
     },
     {
-      "datasource": "${InfluxDbSource}",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "left",
-            "displayMode": "auto",
-            "filterable": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${InfluxDbSource}"
       },
-      "gridPos": {
-        "h": 12,
-        "w": 5,
-        "x": 7,
-        "y": 0
-      },
-      "id": 8,
-      "options": {
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "8.0.6",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> toInt()\r\n  |> keep(columns: [\"_time\", \"_value\", \"track_name\", \"artist_name\"])\r\n  |> sum()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n",
-          "queryType": "randomWalk",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "title": "Top Tracks",
-      "transformations": [
-        {
-          "id": "filterFieldsByName",
-          "options": {}
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {
-              "_value": 0,
-              "artist_name": 2,
-              "track_name": 1
-            },
-            "renameByName": {
-              "_value": "Time",
-              "artist_name": "Artist Name",
-              "track_name": "Track Name"
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": "${InfluxDbSource}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -260,13 +170,13 @@
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "smooth",
+            "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "always",
+            "showPoints": "auto",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -296,7 +206,7 @@
       },
       "gridPos": {
         "h": 12,
-        "w": 9,
+        "w": 12,
         "x": 12,
         "y": 0
       },
@@ -304,11 +214,11 @@
       "options": {
         "graph": {},
         "legend": {
-          "calcs": [
-            "last"
-          ],
-          "displayMode": "hidden",
-          "placement": "right"
+          "calcs": ["last"],
+          "displayMode": "table",
+          "placement": "right",
+          "sortBy": "Last",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "single"
@@ -317,32 +227,30 @@
       "pluginVersion": "7.5.6",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "tgxxPEjMz"
+          },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> toInt()\r\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\r\n  |> cumulativeSum(columns: [\"_value\"])\r\n  |> filter(fn: (r) => r._value > 60 )",
+          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> toInt()\r\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\r\n  |> cumulativeSum(columns: [\"_value\"])\r\n  |> filter(fn: (r) => r._value > 120 )",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -354,112 +262,14 @@
           "tags": []
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Top Artists",
       "type": "timeseries"
     },
     {
-      "datasource": "${InfluxDbSource}",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "left",
-            "displayMode": "auto",
-            "filterable": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${InfluxDbSource}"
       },
-      "gridPos": {
-        "h": 12,
-        "w": 3,
-        "x": 21,
-        "y": 0
-      },
-      "id": 7,
-      "options": {
-        "showHeader": true
-      },
-      "pluginVersion": "8.0.6",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> toInt()\r\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\"])\r\n  |> sum()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n",
-          "queryType": "randomWalk",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "title": "Top Artists",
-      "transformations": [
-        {
-          "id": "filterFieldsByName",
-          "options": {}
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {
-              "_value": 0,
-              "artist_name": 1
-            },
-            "renameByName": {
-              "_value": "Time",
-              "artist_name": "Artist Name"
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": "${InfluxDbSource}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -485,23 +295,15 @@
       },
       "id": 2,
       "options": {
-        "displayLabels": [
-          "name",
-          "value"
-        ],
+        "displayLabels": ["name", "value"],
         "legend": {
           "displayMode": "hidden",
           "placement": "right",
-          "values": [
-            "percent",
-            "value"
-          ]
+          "values": ["percent", "value"]
         },
         "pieType": "pie",
         "reduceOptions": {
-          "calcs": [
-            "sum"
-          ],
+          "calcs": ["sum"],
           "fields": "",
           "values": false
         },
@@ -513,33 +315,31 @@
       "pluginVersion": "7.5.6",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "tgxxPEjMz"
+          },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
           "hide": false,
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> toInt()\n  |> keep(columns: [\"_time\", \"_value\", \"artist_genre\"])\n  |> filter(fn: (r) => r._value > 60 )",
+          "query": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\n  |> toInt()\n  |> keep(columns: [\"_time\", \"_value\", \"artist_genre\"])\n  |> filter(fn: (r) => r._value > 120 )",
           "queryType": "randomWalk",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -558,15 +358,16 @@
           "options": {
             "valueLabel": "artist_genre"
           }
+        },
+        {
+          "id": "merge",
+          "options": {}
         }
       ],
       "type": "piechart"
     },
     {
-      "cards": {
-        "cardPadding": null,
-        "cardRound": null
-      },
+      "cards": {},
       "color": {
         "cardColor": "#b4ff00",
         "colorScale": "sqrt",
@@ -575,7 +376,9 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${InfluxDbSource}",
+      "datasource": {
+        "uid": "${InfluxDbSource}"
+      },
       "description": "",
       "gridPos": {
         "h": 16,
@@ -596,15 +399,11 @@
         {
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -617,9 +416,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -640,36 +437,26 @@
       "xAxis": {
         "show": true
       },
-      "xBucketNumber": null,
-      "xBucketSize": null,
       "yAxis": {
-        "decimals": null,
         "format": "short",
         "logBase": 1,
-        "max": null,
-        "min": null,
-        "show": true,
-        "splitFactor": null
+        "show": true
       },
-      "yBucketBound": "auto",
-      "yBucketNumber": null,
-      "yBucketSize": null
+      "yBucketBound": "auto"
     },
     {
-      "cards": {
-        "cardPadding": null,
-        "cardRound": null
-      },
+      "cards": {},
       "color": {
         "cardColor": "#b4ff00",
         "colorScale": "sqrt",
         "colorScheme": "interpolateOranges",
         "exponent": 0.5,
-        "min": null,
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${InfluxDbSource}",
+      "datasource": {
+        "uid": "${InfluxDbSource}"
+      },
       "description": "",
       "gridPos": {
         "h": 16,
@@ -690,15 +477,11 @@
         {
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -711,9 +494,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -734,27 +515,23 @@
       "xAxis": {
         "show": true
       },
-      "xBucketNumber": null,
-      "xBucketSize": null,
       "yAxis": {
-        "decimals": null,
         "format": "short",
         "logBase": 1,
         "max": "1",
         "min": "0",
-        "show": true,
-        "splitFactor": null
+        "show": true
       },
-      "yBucketBound": "auto",
-      "yBucketNumber": null,
-      "yBucketSize": null
+      "yBucketBound": "auto"
     },
     {
       "aliasColors": {},
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${InfluxDbSource}",
+      "datasource": {
+        "uid": "${InfluxDbSource}"
+      },
       "description": "",
       "fill": 1,
       "fillGradient": 0,
@@ -782,7 +559,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -794,15 +571,11 @@
         {
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -815,9 +588,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -830,9 +601,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Popularity Distribution",
       "tooltip": {
         "shared": false,
@@ -841,11 +610,9 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "max": 100,
         "min": 0,
         "mode": "histogram",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -855,8 +622,6 @@
           "format": "short",
           "label": "Count",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
@@ -864,18 +629,17 @@
           "format": "short",
           "label": "",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": "${InfluxDbSource}",
+      "datasource": {
+        "uid": "${InfluxDbSource}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -905,6 +669,7 @@
       },
       "id": 16,
       "options": {
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [],
           "fields": "",
@@ -914,20 +679,16 @@
         "showThresholdMarkers": false,
         "text": {}
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -940,9 +701,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -958,7 +717,9 @@
       "type": "gauge"
     },
     {
-      "datasource": "${InfluxDbSource}",
+      "datasource": {
+        "uid": "${InfluxDbSource}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -989,6 +750,7 @@
       },
       "id": 17,
       "options": {
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [],
           "fields": "",
@@ -998,20 +760,16 @@
         "showThresholdMarkers": false,
         "text": {}
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -1024,9 +782,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -1042,7 +798,9 @@
       "type": "gauge"
     },
     {
-      "datasource": "${InfluxDbSource}",
+      "datasource": {
+        "uid": "${InfluxDbSource}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1073,6 +831,7 @@
       },
       "id": 24,
       "options": {
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [],
           "fields": "",
@@ -1082,20 +841,16 @@
         "showThresholdMarkers": false,
         "text": {}
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -1108,9 +863,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -1127,7 +880,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 30,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1138,8 +891,6 @@
           "text": "Vintage InfluxDB",
           "value": "Vintage InfluxDB"
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "",
@@ -1154,17 +905,13 @@
         "type": "datasource"
       },
       {
-        "allValue": null,
         "current": {
           "selected": false,
           "text": "kyle.ayn",
           "value": "kyle.ayn"
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
-        "label": null,
         "multi": false,
         "name": "bucket",
         "options": [
@@ -1189,5 +936,6 @@
   "timezone": "",
   "title": "Overview",
   "uid": "y43AI5qMk",
-  "version": 20
+  "version": 23,
+  "weekStart": ""
 }
