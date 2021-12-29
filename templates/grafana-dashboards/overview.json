@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 5,
-  "iteration": 1640742361704,
+  "iteration": 1640759874931,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -49,13 +49,16 @@
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "smooth",
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "always",
+            "showPoints": "auto",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -85,7 +88,7 @@
       },
       "gridPos": {
         "h": 12,
-        "w": 7,
+        "w": 12,
         "x": 0,
         "y": 0
       },
@@ -94,8 +97,10 @@
         "graph": {},
         "legend": {
           "calcs": ["last"],
-          "displayMode": "hidden",
-          "placement": "right"
+          "displayMode": "table",
+          "placement": "right",
+          "sortBy": "Last",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "single"
@@ -150,114 +155,6 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "left",
-            "displayMode": "auto",
-            "filterable": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 12,
-        "w": 5,
-        "x": 7,
-        "y": 0
-      },
-      "id": 8,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": ["sum"],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "8.3.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "tgxxPEjMz"
-          },
-          "groupBy": [
-            {
-              "params": ["$__interval"],
-              "type": "time"
-            },
-            {
-              "params": ["null"],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> toInt()\r\n  |> keep(columns: [\"_time\", \"_value\", \"track_name\", \"artist_name\"])\r\n  |> sum()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> filter(fn: (r) => r._value > 120 )\r\n",
-          "queryType": "randomWalk",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": ["value"],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "title": "Top Tracks",
-      "transformations": [
-        {
-          "id": "filterFieldsByName",
-          "options": {}
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {
-              "_value": 0,
-              "artist_name": 2,
-              "track_name": 1
-            },
-            "renameByName": {
-              "_value": "Time",
-              "artist_name": "Artist Name",
-              "track_name": "Track Name"
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "${InfluxDbSource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
             "mode": "palette-classic"
           },
           "custom": {
@@ -273,13 +170,13 @@
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "smooth",
+            "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "always",
+            "showPoints": "auto",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -309,7 +206,7 @@
       },
       "gridPos": {
         "h": 12,
-        "w": 9,
+        "w": 12,
         "x": 12,
         "y": 0
       },
@@ -318,8 +215,10 @@
         "graph": {},
         "legend": {
           "calcs": ["last"],
-          "displayMode": "hidden",
-          "placement": "right"
+          "displayMode": "table",
+          "placement": "right",
+          "sortBy": "Last",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "single"
@@ -365,111 +264,6 @@
       ],
       "title": "Top Artists",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "${InfluxDbSource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "left",
-            "displayMode": "auto",
-            "filterable": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 12,
-        "w": 3,
-        "x": 21,
-        "y": 0
-      },
-      "id": 7,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": ["sum"],
-          "show": false
-        },
-        "showHeader": true
-      },
-      "pluginVersion": "8.3.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "tgxxPEjMz"
-          },
-          "groupBy": [
-            {
-              "params": ["$__interval"],
-              "type": "time"
-            },
-            {
-              "params": ["null"],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"track\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"seconds_played\")\r\n  |> toInt()\r\n  |> keep(columns: [\"_time\", \"_value\", \"artist_name\"])\r\n  |> sum()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> filter(fn: (r) => r._value > 120 )\r\n",
-          "queryType": "randomWalk",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": ["value"],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "title": "Top Artists",
-      "transformations": [
-        {
-          "id": "filterFieldsByName",
-          "options": {}
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {
-              "_value": 0,
-              "artist_name": 1
-            },
-            "renameByName": {
-              "_value": "Time",
-              "artist_name": "Artist Name"
-            }
-          }
-        }
-      ],
-      "type": "table"
     },
     {
       "datasource": {
@@ -1112,7 +906,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "kyle.ayn",
           "value": "kyle.ayn"
         },
@@ -1142,6 +936,6 @@
   "timezone": "",
   "title": "Overview",
   "uid": "y43AI5qMk",
-  "version": 21,
+  "version": 23,
   "weekStart": ""
 }
