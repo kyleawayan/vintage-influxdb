@@ -95,9 +95,11 @@ yarn install
 yarn start
 ```
 
-5. Click the link that was console logged. If you see `Starting to record data...`, you're done! You can make sure it is working by playing and skipping around tracks on Spotify. It will console log some information and write data to the database about the track when it is finished playing, skipped, or paused. Make sure to watch the logs for a few minutes to make sure InfluxDB doesn't error.
+5. Click the link that was console logged. If you see `Starting to record data...`, you're done! You can make sure it is working by playing and skipping around tracks on Spotify. It will console log some information and write data to the database about the track when it is finished playing, skipped, or paused.
 
-There are also dashboard templates for InfluxDB and Grafana that I have made in the `templates` folder.
+There is a bug where sometimes the token won't refresh correctly, and `vintage-influxdb` will just freeze. A temporary fix is to [restart `vintage-influxdb` daily](https://github.com/kyleawayan/vintage-influxdb/issues/1).
+
+There are dashboard templates for InfluxDB and Grafana that I have made in the `templates` folder.
 
 ### Deploying on a server
 
