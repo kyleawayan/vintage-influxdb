@@ -119,3 +119,7 @@ yarn dev
 ```
 
 This will auto-compile on file changes using `ts-node-dev`. **Make sure to use another InfluxDB database or bucket for development!**
+
+### To Do
+
+Check out the [Projects page](https://github.com/kyleawayan/vintage-influxdb/projects) for upcoming versions.
