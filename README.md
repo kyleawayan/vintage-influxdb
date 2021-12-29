@@ -116,4 +116,4 @@ pm2 startup
 yarn dev
 ```
 
-This will auto-compile on file changes using `ts-node-dev`. Writing to the database will also be disabled.
+This will auto-compile on file changes using `ts-node-dev`. **Make sure to use another InfluxDB database or bucket for development!**
