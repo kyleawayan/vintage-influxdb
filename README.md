@@ -5,12 +5,12 @@ Record your Spotify listening data on [InfluxDB](https://www.influxdata.com/).
 Dashboard with InfluxDB
 [template](https://github.com/kyleawayan/vintage-influxdb/blob/main/templates/influxdb-dashboards/overview.json)
 
-![Dashboard with InfluxDB](https://cdn.discordapp.com/attachments/820226193482973194/845563820604260352/unknown.png)
+![Dashboard with InfluxDB](https://kylan.s3.us-west-1.amazonaws.com/vintage-influxdb/influxdb.webp)
 
 Dashboard with Grafana
 [template](https://github.com/kyleawayan/vintage-influxdb/blob/main/templates/grafana-dashboards/overview.json)
 
-![Dashboard with Grafana](https://cdn.discordapp.com/attachments/820226193482973194/845562866663817216/unknown.png)
+![Dashboard with Grafana](https://kylan.s3.us-west-1.amazonaws.com/vintage-influxdb/grafana.webp)
 
 ## What's collected
 
