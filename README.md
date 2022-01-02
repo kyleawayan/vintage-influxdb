@@ -83,7 +83,7 @@ Node.js, Yarn, and an InfluxDB database is needed. You will also need `localhost
 
 ```
 git clone https://github.com/kyleawayan/vintage-influxdb
-cd vinage-influxdb
+cd vintage-influxdb
 yarn install
 ```
 
